@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#ffb3cf">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="สุขภาพลูก">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>สุขภาพลูก</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#fff6fa;--card:#fff;--tx:#33262e;--mu:#7a6573;--navy:#d23c77;--gold:#f2b53f;--green:#2e9467;--bd:#f8d6e4;--red:#b3392f;--on:#fff;--sky:#7cc6f0;--sky-l:#e3f4fd;--pink-l:#ffe6f0;--mint:#d6f3e3;--mt:#1f6b4a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241621;--card:#33202e;--tx:#fbeaf2;--mu:#d2b3c4;--navy:#ff8fb8;--bd:#553449;--red:#f08a80;--on:#33202e;--sky-l:#1f3a4b;--pink-l:#4a2a3d;--mint:#24463a;--mt:#bff0d6;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#241621;--card:#33202e;--tx:#fbeaf2;--mu:#d2b3c4;--navy:#ff8fb8;--bd:#553449;--red:#f08a80;--on:#33202e;--sky-l:#1f3a4b;--pink-l:#4a2a3d;--mint:#24463a;--mt:#bff0d6;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 "Noto Sans Thai",system-ui,sans-serif;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:560px;margin:0 auto;padding:0 14px}
+header{background:linear-gradient(120deg,#ffb3cf,#c9ecd9 55%,#a8dcf7);color:#3a2230;padding:14px 14px 16px;border-bottom:5px solid var(--gold);border-radius:0 0 28px 28px}
+header div{max-width:560px;margin:0 auto}
+header h1{margin:0;font-size:23px}
+.kids{display:flex;gap:8px;overflow-x:auto;padding:14px 0 2px}
+.kid{flex:0 0 auto;border:2px solid var(--bd);background:var(--card);color:var(--tx);border-radius:999px;padding:8px 20px;font:600 16px "Noto Sans Thai",sans-serif;cursor:pointer}
+.kid[aria-pressed="true"]{border-color:var(--gold);background:var(--navy);color:var(--on);box-shadow:0 3px 0 var(--gold)}
+.card{background:var(--card);border:2px solid var(--bd);border-radius:24px;padding:16px;margin-top:14px;box-shadow:0 4px 0 var(--bd)}
+h2{font-size:19px;margin:0 0 4px;color:var(--navy)}
+h3{font-size:15px;margin:20px 0 8px;padding:5px 14px;display:inline-block;background:var(--mint);color:var(--mt);border-radius:999px}
+label{display:block;font-size:14px;font-weight:600;margin:10px 0 4px}
+label span{font-weight:400;color:var(--mu)}
+input,textarea{width:100%;font:16px "Noto Sans Thai",sans-serif;padding:10px 12px;border:2px solid var(--bd);border-radius:14px;background:var(--bg);color:var(--tx);margin-bottom:6px}
+textarea{min-height:64px;resize:vertical}
+input:focus-visible,textarea:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
+.btn{width:100%;margin-top:12px;padding:13px;border:0;border-radius:999px;box-shadow:0 4px 0 #1f6e4c;background:var(--green);color:#fff;font:700 17px "Noto Sans Thai",sans-serif;cursor:pointer}
+.btn.light{background:transparent;color:var(--navy);border:2px solid var(--navy);margin-top:8px;padding:10px;font-size:15px;font-weight:600;box-shadow:none}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+.med{border:2px dashed var(--gold);border-radius:16px;padding:8px;margin-bottom:8px}
+.med .row input{flex:1}.x{flex:0 0 44px;height:44px;border:0;background:none;color:var(--mu);font-size:18px;cursor:pointer}
+.day{font-size:14px;font-weight:700;color:var(--navy);margin:20px 0 6px;padding-bottom:4px;border-bottom:2px solid var(--gold)}
+.item{background:var(--card);border:2px solid var(--bd);border-left:8px solid var(--green);border-radius:20px;padding:12px 14px;margin-bottom:10px}
+.item .dt{float:right;color:var(--mu);font-size:13px}
+.item b{font-size:18px}
+.item p{margin:6px 0 0}.item .k{font-size:13px;font-weight:700;color:var(--navy)}
+.pill{display:inline-block;background:var(--sky-l);border:1px solid var(--sky);border-radius:20px;padding:1px 10px;margin:2px 4px 2px 0;font-size:14px}
+.item ul{margin:2px 0 0;padding-left:20px}
+.del{margin-top:6px;background:none;border:0;color:var(--mu);font:14px "Noto Sans Thai",sans-serif;padding:4px 0;cursor:pointer;text-decoration:underline}
+.del.sure{color:var(--red);font-weight:700}
+.empty{text-align:center;color:var(--mu);padding:26px 10px}
+.note{font-size:13px;color:var(--mu);margin:6px 0 0}
+.hide{display:none}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:3px solid var(--gold);display:flex;gap:2px;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));border-radius:24px 24px 0 0;z-index:5}
+nav button{flex:1;border:0;background:none;color:var(--mu);padding:8px 0 7px;font:600 12px "Noto Sans Thai",sans-serif;cursor:pointer}
+nav button i{display:block;font-style:normal;font-size:22px;line-height:1.2}
+nav button[aria-current="page"]{color:var(--navy);background:var(--pink-l);border-radius:18px}
+.hide{display:none!important}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--mint);color:var(--mt);font-size:14px;font-weight:600;border-bottom:3px solid var(--gold)}
+.bar.upd{background:var(--gold);color:#3a2a00}
+.bar span{flex:1}
+.bar button{border:0;border-radius:999px;background:var(--navy);color:var(--on);padding:8px 14px;font:700 14px "Noto Sans Thai",sans-serif;cursor:pointer}
+.bar button.ghost{background:none;color:inherit;padding:8px;font-size:16px}
+nav button{position:relative}
+.dot{position:absolute;top:6px;left:calc(50% + 10px);width:11px;height:11px;border-radius:50%;background:var(--red);border:2px solid var(--card)}
+.seg{flex:1;border:2px solid var(--bd);background:var(--card);color:var(--tx);border-radius:999px;padding:9px 6px;font:600 14px "Noto Sans Thai",sans-serif;cursor:pointer}
+.seg[aria-pressed="true"]{background:var(--navy);color:var(--on);border-color:var(--gold)}
+.warn{background:#ffe3e0;color:#9b1c13;border-radius:12px;padding:8px 10px;font-size:14px;font-weight:700;margin-top:6px}
+.ct{fill:var(--mu);font-size:10px}
+#em{position:fixed;inset:0;z-index:30;background:#fff;color:#2a1a22;overflow:auto;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 28px}
+#em h1{margin:0 0 4px;font-size:22px;color:#c0182b}#em .emn{font-size:30px;font-weight:700}
+#em .emb{border:3px solid #e9a0a8;border-radius:16px;padding:10px 14px;margin-top:12px;font-size:18px}
+#em .emb.red{border-color:#c0182b;background:#fff1f2}
+#em .emx{float:right;border:0;border-radius:999px;background:#2a1a22;color:#fff;padding:10px 16px;font:700 15px "Noto Sans Thai",sans-serif}
+#em .emcall{display:block;text-align:center;margin-top:16px;padding:16px;border-radius:999px;background:#c0182b;color:#fff;font-size:20px;font-weight:700;text-decoration:none}
+.off{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.ph{margin:0}
+.ph img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;border:2px solid var(--bd);cursor:zoom-in}
+.ph figcaption{font-size:13px;font-weight:600}
+#lock{position:fixed;inset:0;z-index:50;background:linear-gradient(160deg,#ffb3cf,#c9ecd9 55%,#a8dcf7);display:flex;align-items:center;justify-content:center;padding:24px}
+#lock .lk{background:var(--card);color:var(--tx);border-radius:28px;padding:24px;width:100%;max-width:340px;text-align:center;border:3px solid var(--gold)}
+#lock input{text-align:center;font-size:24px;letter-spacing:8px}
+#pv{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:10px}
+#pv img{max-width:100%;max-height:100%;border-radius:8px}
+</style>
+</head>
+<body>
+<header><div><h1>🧸 สุขภาพลูก</h1></div></header>
+<div id="upd" class="bar upd hide" role="status"><span>🎉 มีเวอร์ชันใหม่ ข้อมูลที่จดไว้จะไม่หาย</span><button id="updNow" type="button">อัปเดตเลย</button><button id="updLater" class="ghost" type="button" aria-label="ไว้ทีหลัง">✕</button></div>
+<div id="ins" class="bar hide"><span id="insTxt"></span><button id="insBtn" type="button">ติดตั้ง</button><button id="insX" class="ghost" type="button" aria-label="ปิด">✕</button></div>
+<div class="wrap">
+  <div class="kids" id="kids" role="group" aria-label="เลือกเด็ก"></div>
+
+  <!-- บันทึกการป่วย -->
+  <section id="p-ill">
+    <div id="algStrip"></div>
+    <button class="btn" id="openIll" type="button">➕ บันทึกการป่วยใหม่</button>
+    <form class="card hide" id="fi" autocomplete="off">
+      <h2>📝 บันทึกการป่วย — <span class="who"></span></h2>
+      <h3>🦠 โรคที่ป่วย</h3>
+      <input id="dis" list="diseases" required placeholder="เช่น ไข้หวัด" aria-label="โรคที่ป่วย">
+      <datalist id="diseases"></datalist>
+      <label for="idate">📅 วันที่เริ่มป่วย</label>
+      <input id="idate" type="date" required>
+      <h3>🤧 อาการ</h3>
+      <textarea id="sym" placeholder="เช่น ไข้ ไอ น้ำมูก เริ่มเมื่อไหร่" aria-label="อาการ"></textarea>
+      <h3>🌡️ สัญญาณชีพ</h3>
+      <div class="grid">
+        <div><label for="v-t">🔥 อุณหภูมิ <span>°C</span></label><input id="v-t" inputmode="decimal"></div>
+        <div><label for="v-h">💓 ชีพจร <span>ครั้ง/นาที</span></label><input id="v-h" inputmode="numeric"></div>
+        <div><label for="v-r">🌬️ การหายใจ <span>ครั้ง/นาที</span></label><input id="v-r" inputmode="numeric"></div>
+        <div><label for="v-s">🫁 SpO₂ <span>%</span></label><input id="v-s" inputmode="numeric"></div>
+        <div><label for="v-b">🩸 ความดัน <span>mmHg</span></label><input id="v-b" placeholder="เช่น 100/60"></div>
+        <div><label for="v-w">⚖️ น้ำหนัก <span>กก.</span></label><input id="v-w" inputmode="decimal"></div>
+      </div>
+      <h3>🩹 วิธีการรักษา</h3>
+      <textarea id="trt" placeholder="เช่น เช็ดตัว พักผ่อน ดื่มน้ำมากๆ นอนโรงพยาบาล" aria-label="วิธีการรักษา"></textarea>
+      <label for="doc">🏥 แพทย์ / สถานพยาบาล <span>(ถ้ามี)</span></label>
+      <input id="doc" list="docs"><datalist id="docs"></datalist>
+      <h3>💊 ยา <span style="font-weight:400;color:var(--mu)">(ตามคำสั่งแพทย์)</span></h3>
+      <div id="meds"></div>
+      <datalist id="mednames"></datalist>
+      <button class="btn light" id="addMed" type="button">➕ เพิ่มยาอีกตัว</button>
+      <button class="btn" type="submit">💾 บันทึกการป่วย</button>
+      <button class="btn light" id="cancelIll" type="button">ยกเลิก</button>
+    </form>
+    <div id="illList"></div>
+  </section>
+
+  <!-- ตรวจสุขภาพ -->
+  <section id="p-chk" class="hide">
+    <form class="card" id="fc" autocomplete="off">
+      <h2>🩺 ตรวจสุขภาพ — <span class="who"></span></h2>
+      <label for="cdate">📅 วันที่ตรวจ</label><input id="cdate" type="date" required>
+      <div class="grid">
+        <div><label for="cw">⚖️ น้ำหนัก <span>กก.</span></label><input id="cw" inputmode="decimal"></div>
+        <div><label for="ch">📏 ส่วนสูง <span>ซม.</span></label><input id="ch" inputmode="decimal"></div>
+        <div><label for="cc">👶 รอบศีรษะ <span>ซม.</span></label><input id="cc" inputmode="decimal"></div>
+        <div><label for="cp">🏥 สถานพยาบาล</label><input id="cp" list="docs"></div>
+      </div>
+      <label for="cn">ผลตรวจ / วัคซีน / หมายเหตุ</label><textarea id="cn"></textarea>
+      <button class="btn" type="submit">💾 บันทึกการตรวจ</button>
+    </form>
+    <div id="chkList"></div>
+  </section>
+
+  <!-- แพ้อาหารและยา -->
+  <section id="p-alg" class="hide">
+    <form class="card" id="fa" autocomplete="off">
+      <h2>🥜 แพ้อาหารและยา — <span class="who"></span></h2>
+      <div class="row" role="group" aria-label="ประเภทที่แพ้"><button type="button" class="seg" data-ty="food" aria-pressed="true">🍤 แพ้อาหาร</button><button type="button" class="seg" data-ty="drug" aria-pressed="false">💊 แพ้ยา</button></div>
+      <label for="an">ชื่อสิ่งที่แพ้</label><input id="an" list="algnames" required placeholder="เช่น กุ้ง นมวัว เพนิซิลลิน"><datalist id="algnames"></datalist>
+      <label for="ar">อาการที่เกิด <span>(ถ้ามี)</span></label><input id="ar" placeholder="เช่น ผื่นขึ้น หน้าบวม">
+      <label>ความรุนแรง</label>
+      <div class="row" role="group" aria-label="ความรุนแรง"><button type="button" class="seg" data-sv="1" aria-pressed="false">🟢 เล็กน้อย</button><button type="button" class="seg" data-sv="2" aria-pressed="true">🟡 ปานกลาง</button><button type="button" class="seg" data-sv="3" aria-pressed="false">🔴 รุนแรง</button></div>
+      <label for="ad">📅 วันที่พบ <span>(ถ้าจำได้)</span></label><input id="ad" type="date">
+      <label for="ano">หมายเหตุ</label><textarea id="ano"></textarea>
+      <button class="btn" type="submit">💾 บันทึกการแพ้</button>
+    </form>
+    <div id="algList"></div>
+  </section>
+
+  <!-- ฟังก์ชันพิเศษ -->
+  <section id="p-sp" class="hide">
+    <div class="card"><h2>🚨 บัตรฉุกเฉิน — <span class="who"></span></h2>
+      <p class="note">โชว์ชื่อ อายุ หมู่เลือด สิ่งที่แพ้ และเบอร์ผู้ปกครองบนหน้าจอใหญ่ๆ ให้หมอหรือพยาบาลดูได้ทันที</p>
+      <div class="grid"><div><label for="pb">🎂 วันเกิด</label><input id="pb" type="date"></div><div><label for="pbl">🩸 หมู่เลือด</label><input id="pbl" placeholder="เช่น O"></div></div>
+      <label for="pph">📞 เบอร์ผู้ปกครอง</label><input id="pph" inputmode="tel">
+      <button class="btn" id="showEm" type="button" style="background:#c0182b;box-shadow:0 4px 0 #8c111f">🚨 เปิดบัตรฉุกเฉิน</button></div>
+    <div class="card"><h2>📄 สรุปส่งหมอ</h2>
+      <p class="note">รวมข้อมูลที่แพ้ ประวัติป่วยและยาล่าสุดเป็นข้อความ แชร์หรือคัดลอกส่งให้หมอได้</p>
+      <button class="btn light" id="sumBtn" type="button">📤 สร้างสรุป</button>
+      <textarea id="sumTxt" class="hide" style="min-height:150px;font-size:13px;margin-top:8px" aria-label="ข้อความสรุป"></textarea></div>
+    <div class="card"><h2>📈 กราฟสุขภาพ — <span class="who"></span></h2><div id="charts"></div></div>
+    <div class="card"><h2>⏱️ นาฬิกาเว้นระยะยา</h2>
+      <p class="note">ใส่จำนวนชั่วโมงตามที่แพทย์หรือฉลากยาระบุ แล้วกด “เพิ่งให้ยา” แอปจะนับเวลาถึงรอบถัดไปให้ (แอปไม่ได้แนะนำขนาดหรือระยะห่างของยา)</p>
+      <div class="row"><input id="tn" list="mednames" placeholder="ชื่อยา" aria-label="ชื่อยา" style="flex:2"><input id="th" type="number" min="1" max="72" inputmode="numeric" placeholder="ทุก (ชม.)" aria-label="ทุกกี่ชั่วโมง"></div>
+      <button class="btn light" id="addTimer" type="button">➕ สร้างนาฬิกายา</button>
+      <div id="timers"></div></div>
+    <div class="card"><h2>⭐ สมุดสะสมดาว — <span class="who"></span></h2>
+      <div id="starBox"></div>
+      <button class="btn" id="starBtn" type="button" style="background:var(--gold);color:#3a2a00;box-shadow:0 4px 0 #c28d1f">⭐ กินยาเก่ง! +1 ดาว</button></div>
+  </section>
+  <div id="em" class="hide" role="dialog" aria-modal="true" aria-label="บัตรฉุกเฉิน"></div>
+
+  <!-- ตู้เซฟ -->
+  <section id="p-vt" class="hide">
+    <p class="note" id="vmsg" role="status" style="margin-top:12px"></p>
+    <div class="card" id="pinCard"></div>
+    <div class="card"><h2>🏥 เลข HN — <span class="who"></span></h2>
+      <p class="note">เลขประจำตัวผู้ป่วยของแต่ละโรงพยาบาล</p>
+      <div class="row"><input id="hh" list="docs" placeholder="โรงพยาบาล" aria-label="โรงพยาบาล" style="flex:2"><input id="hn" placeholder="เลข HN" aria-label="เลข HN"></div>
+      <button class="btn light" id="addHn" type="button">➕ เพิ่มเลข HN</button><div id="hnList"></div></div>
+    <div id="secure" class="hide">
+      <div class="card"><h2>🆔 บัตรประชาชน — <span class="who"></span></h2>
+        <p class="note">รูปบัตรถูกเข้ารหัสด้วยรหัสของคุณก่อนเก็บลงเครื่อง</p>
+        <input id="idt" placeholder="ชื่อบัตร เช่น บัตรประชาชนลูก ด้านหน้า" aria-label="ชื่อบัตร">
+        <div class="row"><button class="btn light" data-up="id" data-cam="1" type="button">📷 ถ่ายรูปบัตร</button><button class="btn light" data-up="id" data-cam="0" type="button">🖼️ เลือกรูป</button></div>
+        <div id="idList" class="gal"></div></div>
+      <div class="card"><h2>🔑 บัญชีแอปโรงพยาบาล</h2>
+        <p class="note">ชื่อผู้ใช้และรหัสผ่านถูกเข้ารหัสด้วยรหัสของคุณ</p>
+        <form id="fw" autocomplete="off"><input id="ap" required placeholder="ชื่อแอป/โรงพยาบาล" aria-label="ชื่อแอป"><input id="au" required placeholder="Username" aria-label="Username" autocapitalize="off"><input id="aw" type="password" required placeholder="Password" aria-label="Password" autocomplete="new-password"><input id="acn" placeholder="หมายเหตุ (ถ้ามี)" aria-label="หมายเหตุ">
+        <button class="btn" type="submit">💾 บันทึกบัญชี</button></form>
+        <div id="accList"></div></div>
+    </div>
+    <div class="card"><h2>📷 อัลบั้มรูป — <span class="who"></span></h2>
+      <p class="note">ถ่ายรูปผื่น แผล ใบสั่งยา ผลตรวจ เก็บไว้ดูประกอบตอนพบแพทย์</p>
+      <input id="pht" placeholder="คำอธิบาย เช่น ผื่นที่แขน" aria-label="คำอธิบายรูป">
+      <div class="row"><button class="btn light" data-up="photo" data-cam="1" type="button">📷 ถ่ายรูป</button><button class="btn light" data-up="photo" data-cam="0" type="button">🖼️ เลือกรูป</button></div>
+      <div id="phList" class="gal"></div></div>
+    <input type="file" id="fcam" accept="image/*" capture="environment" class="off" tabindex="-1" aria-hidden="true"><input type="file" id="ffile" accept="image/*" class="off" tabindex="-1" aria-hidden="true">
+  </section>
+
+  <!-- เพิ่มเติม -->
+  <section id="p-more" class="hide">
+    <div class="card">
+      <h2>📲 ติดตั้งแอป และอัปเดต</h2>
+      <p class="note" id="insInfo"></p>
+      <button class="btn light" id="insBtn2" type="button">📲 ติดตั้งแอปลงเครื่อง</button>
+      <button class="btn light" id="chkUpd" type="button">🔄 ตรวจสอบเวอร์ชันใหม่</button>
+      <p class="note" id="verTxt" role="status"></p>
+    </div>
+    <div class="card">
+      <h2>👧 เด็กในแอป</h2>
+      <div class="row"><input id="newKid" placeholder="ชื่อเด็กคนใหม่" aria-label="ชื่อเด็กคนใหม่" style="margin:0"><button class="btn light" style="flex:0 0 auto;width:auto;margin:0;padding:0 16px" id="addKid" type="button">เพิ่มเด็ก</button></div>
+      <button class="btn light" id="delKid" type="button"></button>
+    </div>
+    <div class="card">
+      <h2>💾 สำรอง / กู้คืนข้อมูล</h2>
+      <textarea id="bk" style="min-height:90px;font-size:12px" aria-label="ข้อมูลสำรอง" placeholder="กด “สร้างข้อมูลสำรอง” แล้วคัดลอกข้อความไปเก็บไว้ หรือวางข้อความสำรองที่นี่เพื่อกู้คืน"></textarea>
+      <div class="row"><button class="btn light" id="mk" type="button">สร้างข้อมูลสำรอง</button><button class="btn light" id="rs" type="button">กู้คืนจากข้อความ</button></div>
+      <p class="note" id="msg" role="status"></p>
+      <p class="note">ข้อมูลเก็บในเบราว์เซอร์เครื่องนี้เท่านั้น การล้างข้อมูลเว็บไซต์อาจทำให้หาย ควรสำรองเป็นระยะ แอปนี้ใช้จดบันทึก ไม่ได้แปลผลหรือแนะนำขนาดยา</p>
+    </div>
+  </section>
+</div>
+<div id="lock" class="hide" role="dialog" aria-modal="true" aria-label="ใส่รหัสเพื่อเปิดแอป"><div class="lk"><div style="font-size:60px;line-height:1.2">🧸</div><h2>สุขภาพลูก</h2><p class="note">ใส่รหัสเพื่อเปิดแอป</p>
+<input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="รหัสป้องกัน" placeholder="••••••"><button class="btn" id="unlockBtn" type="button">🔓 เปิดแอป</button><p class="warn hide" id="lkMsg" role="alert"></p><button class="del" id="forgot" type="button">ลืมรหัส? ล้างตู้เซฟแล้วตั้งใหม่</button></div></div>
+<div id="pv" class="hide" role="dialog" aria-label="ดูรูป"></div>
+<nav aria-label="เมนูหลัก">
+  <button data-t="ill" aria-current="page"><i>🤒</i>การป่วย</button>
+  <button data-t="chk"><i>🩺</i>ตรวจ</button>
+  <button data-t="alg"><i>🥜</i>แพ้</button>
+  <button data-t="sp"><i>✨</i>พิเศษ</button>
+  <button data-t="vt"><i>🔐</i>ตู้เซฟ</button>
+  <button data-t="more"><i>🎈</i>เพิ่มเติม<span class="dot hide" id="dot"></span></button>
+</nav>
+<script>
+var KEY="kidsMedLog.v1",S,T="ill",$=function(i){return document.getElementById(i)};
+function load(){try{var r=localStorage.getItem(KEY);if(r){var d=JSON.parse(r);if(d&&d.kids)return d}}catch(e){}return null}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){$("msg").textContent="บันทึกลงเครื่องไม่ได้ กรุณาสำรองข้อมูลเก็บไว้"}}
+function migrate(){S.ill=S.ill||[];S.chk=S.chk||[];S.alg=S.alg||[];S.stars=S.stars||{};S.timers=S.timers||[];S.hn=S.hn||[];
+  if(S.logs){S.logs.forEach(function(l){S.ill.push({id:l.id,kid:l.kid,disease:l.why||"ไม่ระบุโรค",start:(l.when||"").slice(0,10),sym:"",v:{},trt:"",doc:l.doc||"",meds:[{n:l.name,d:l.dose,h:l.note}]})});delete S.logs}}
+S=load()||{kids:[{id:"k1",name:"พอตเตอร์"},{id:"k2",name:"วินเนอร์"}],cur:"k1"};migrate();save();
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function kid(){return S.kids.filter(function(k){return k.id===S.cur})[0]||S.kids[0]}
+function today(){var d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)}
+function fd(v){return v?new Date(v+"T00:00:00").toLocaleDateString("th-TH",{day:"numeric",month:"long",year:"numeric"}):"ไม่ระบุวันที่"}
+function opts(id,vals){$(id).innerHTML=vals.filter(function(v,i,a){return v&&a.indexOf(v)===i}).map(function(v){return'<option value="'+esc(v)+'">'}).join("")}
+function medBlock(){return'<div class="med"><div class="row"><input class="mn" list="mednames" placeholder="ชื่อยา" aria-label="ชื่อยา"><button type="button" class="x" aria-label="ลบยาตัวนี้">✕</button></div><input class="md" placeholder="ขนาดที่กิน เช่น 5 มล. / 1 เม็ด" aria-label="ขนาดที่กิน"><input class="mh" placeholder="วิธีกิน เช่น วันละ 3 ครั้ง หลังอาหาร" aria-label="วิธีกิน"><div class="warn hide" role="alert"></div></div>'}
+var KE=["🐣","🦄","🐻","🐰","🦊","🐼"];var VL=[["t","🔥 อุณหภูมิ","°C"],["h","💓 ชีพจร","/นาที"],["r","🌬️ หายใจ","/นาที"],["s","🫁 SpO₂","%"],["b","🩸 ความดัน","mmHg"],["w","⚖️ น้ำหนัก","กก."]];
+function render(){
+  var k=kid();if(!k){S.kids=[{id:"k"+Date.now(),name:"เด็กคนที่ 1"}];k=S.kids[0]}S.cur=k.id;
+  $("kids").innerHTML=S.kids.map(function(x,i){return'<button class="kid" data-k="'+x.id+'" aria-pressed="'+(x.id===k.id)+'">'+KE[i%KE.length]+' '+esc(x.name)+'</button>'}).join("");
+  Array.prototype.forEach.call(document.querySelectorAll(".who"),function(e){e.textContent=k.name});
+  $("delKid").textContent="ลบ "+k.name+" และข้อมูลทั้งหมด";
+  var mine=S.ill.filter(function(l){return l.kid===k.id});
+  opts("diseases",S.ill.map(function(l){return l.disease}));opts("docs",S.ill.map(function(l){return l.doc}).concat(S.chk.map(function(c){return c.place})));
+  var mn=[];S.ill.forEach(function(l){(l.meds||[]).forEach(function(m){mn.push(m.n)})});opts("mednames",mn);
+  mine.sort(function(a,b){return a.start<b.start?1:a.start>b.start?-1:(a.id<b.id?1:-1)});
+  $("illList").innerHTML=mine.length?mine.map(function(l){
+    var vs=VL.filter(function(x){return l.v&&l.v[x[0]]}).map(function(x){return'<span class="pill">'+x[1]+" "+esc(l.v[x[0]])+" "+x[2]+"</span>"}).join("");
+    var ms=(l.meds||[]).map(function(m){return"<li><b style=\"font-size:16px\">"+esc(m.n)+"</b>"+(m.d?" — "+esc(m.d):"")+(m.h?"<br><span class=\"note\">"+esc(m.h)+"</span>":"")+"</li>"}).join("");
+    return'<div class="item" style="margin-top:12px"><span class="dt">'+fd(l.start)+'</span><b>🦠 '+esc(l.disease)+'</b>'+
+      (l.sym?'<p><span class="k">🤧 อาการ</span><br>'+esc(l.sym)+'</p>':"")+(vs?'<p><span class="k">🌡️ สัญญาณชีพ</span><br>'+vs+'</p>':"")+
+      ((l.trt||l.doc)?'<p><span class="k">🩹 วิธีการรักษา</span><br>'+esc(l.trt)+(l.doc?'<br><span class="note">'+esc(l.doc)+'</span>':"")+'</p>':"")+
+      (ms?'<p><span class="k">💊 ยา</span></p><ul>'+ms+'</ul>':"")+
+      '<button class="del" data-d="'+l.id+'">ลบรายการนี้</button></div>'}).join(""):'<div class="empty">🌈<br>ยังไม่มีบันทึกการป่วยของ'+esc(k.name)+'<br>กด “บันทึกการป่วยใหม่” เพื่อเริ่มจด</div>';
+  var cs=S.chk.filter(function(c){return c.kid===k.id}).sort(function(a,b){return a.date<b.date?1:-1});
+  $("chkList").innerHTML=cs.length?cs.map(function(c){
+    var p=[c.w&&"น้ำหนัก "+esc(c.w)+" กก.",c.h&&"ส่วนสูง "+esc(c.h)+" ซม.",c.c&&"รอบศีรษะ "+esc(c.c)+" ซม."].filter(Boolean).map(function(t){return'<span class="pill">'+t+"</span>"}).join("");
+    return'<div class="item" style="margin-top:12px;border-left-color:var(--sky)"><span class="dt">'+fd(c.date)+'</span><b>🩺 ตรวจสุขภาพ</b>'+(c.place?'<div class="note">'+esc(c.place)+'</div>':"")+(p?"<p>"+p+"</p>":"")+(c.note?"<p>"+esc(c.note)+"</p>":"")+'<button class="del" data-c="'+c.id+'">ลบรายการนี้</button></div>'}).join(""):'<div class="empty">🌱<br>ยังไม่มีบันทึกการตรวจของ'+esc(k.name)+'</div>'}
+function showTab(t){T=t;["ill","chk","alg","sp","vt","more"].forEach(function(x){$("p-"+x).classList.toggle("hide",x!==t)});
+  Array.prototype.forEach.call(document.querySelectorAll("nav button"),function(b){if(b.dataset.t===t)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});window.scrollTo(0,0)}
+function openForm(on){$("fi").classList.toggle("hide",!on);$("openIll").classList.toggle("hide",on);if(on){$("fi").reset();$("idate").value=today();$("meds").innerHTML=medBlock();$("fi").scrollIntoView()}}
+function arm(b,fn){if(b.dataset.s){fn();return}b.dataset.s=1;b.classList.add("sure");var o=b.textContent;b.textContent="กดอีกครั้งเพื่อยืนยันลบ";
+  setTimeout(function(){if(b.isConnected){delete b.dataset.s;b.classList.remove("sure");b.textContent=o}},3500)}
+document.querySelector("nav").addEventListener("click",function(e){var b=e.target.closest("[data-t]");if(b)showTab(b.dataset.t)});
+$("kids").addEventListener("click",function(e){var b=e.target.closest("[data-k]");if(b){S.cur=b.dataset.k;save();openForm(false);render()}});
+$("openIll").addEventListener("click",function(){openForm(true)});
+$("cancelIll").addEventListener("click",function(){openForm(false)});
+$("addMed").addEventListener("click",function(){$("meds").insertAdjacentHTML("beforeend",medBlock())});
+$("meds").addEventListener("click",function(e){var x=e.target.closest(".x");if(x){x.closest(".med").remove();if(!$("meds").children.length)$("meds").innerHTML=medBlock()}});
+$("fi").addEventListener("submit",function(e){e.preventDefault();var v={};VL.forEach(function(x){v[x[0]]=$("v-"+x[0]).value.trim()});
+  var meds=Array.prototype.map.call(document.querySelectorAll("#meds .med"),function(m){return{n:m.querySelector(".mn").value.trim(),d:m.querySelector(".md").value.trim(),h:m.querySelector(".mh").value.trim()}}).filter(function(m){return m.n});
+  S.ill.push({id:"i"+Date.now(),kid:kid().id,disease:$("dis").value.trim(),start:$("idate").value,sym:$("sym").value.trim(),v:v,trt:$("trt").value.trim(),doc:$("doc").value.trim(),meds:meds});
+  save();openForm(false);render();window.scrollTo(0,0)});
+$("illList").addEventListener("click",function(e){var b=e.target.closest("[data-d]");if(b)arm(b,function(){S.ill=S.ill.filter(function(l){return l.id!==b.dataset.d});save();render()})});
+$("fc").addEventListener("submit",function(e){e.preventDefault();
+  S.chk.push({id:"c"+Date.now(),kid:kid().id,date:$("cdate").value,w:$("cw").value.trim(),h:$("ch").value.trim(),c:$("cc").value.trim(),place:$("cp").value.trim(),note:$("cn").value.trim()});
+  save();$("fc").reset();$("cdate").value=today();render()});
+$("chkList").addEventListener("click",function(e){var b=e.target.closest("[data-c]");if(b)arm(b,function(){S.chk=S.chk.filter(function(c){return c.id!==b.dataset.c});save();render()})});
+$("addKid").addEventListener("click",function(){var n=$("newKid").value.trim();if(!n)return;var id="k"+Date.now();S.kids.push({id:id,name:n});S.cur=id;$("newKid").value="";save();render();showTab("ill")});
+$("delKid").addEventListener("click",function(){var b=$("delKid"),id=kid().id;arm(b,function(){S.kids=S.kids.filter(function(k){return k.id!==id});S.ill=S.ill.filter(function(l){return l.kid!==id});S.chk=S.chk.filter(function(c){return c.kid!==id});S.alg=S.alg.filter(function(a){return a.kid!==id});S.timers=S.timers.filter(function(t){return t.kid!==id});delete S.stars[id];S.hn=(S.hn||[]).filter(function(h){return h.kid!==id});purgeKid(id);S.cur=S.kids[0]&&S.kids[0].id;save();render()})});
+$("mk").addEventListener("click",function(){$("bk").value=JSON.stringify(S);$("bk").select();try{document.execCommand("copy");$("msg").textContent="สร้างข้อมูลสำรองแล้ว คัดลอกไปเก็บไว้ในโน้ตหรือแชตของตัวเอง"}catch(e){$("msg").textContent="กดค้างที่ข้อความแล้วเลือกคัดลอก"}});
+$("rs").addEventListener("click",function(){try{var d=JSON.parse($("bk").value);if(!d.kids)throw 0;S=d;migrate();S.cur=S.cur||S.kids[0].id;save();render();if(S.sec)lockNow();$("msg").textContent="กู้คืนข้อมูลเรียบร้อย (รูปภาพไม่รวมในข้อมูลสำรอง)"}catch(e){$("msg").textContent="ข้อความสำรองไม่ถูกต้อง กรุณาวางข้อความที่สร้างจากปุ่มสำรองให้ครบทั้งหมด"}});
+$("cdate").value=today();render();
+
+/* ===== ติดตั้งแอป + แจ้งอัปเดต ===== */
+var APP_VERSION="1.2.0",dp=null,reg=null,wantReload=false;
+var UA=navigator.userAgent,isIOS=/iphone|ipad|ipod/i.test(UA)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+var isStd=(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
+var isSafari=/safari/i.test(UA)&&!/crios|fxios|edgios|opr\//i.test(UA);
+function lget(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lset(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function howTo(){
+  if(isIOS)return isSafari?"iPhone/iPad: แตะปุ่มแชร์ ⬆️ ที่แถบล่างของ Safari แล้วเลือก “เพิ่มไปยังหน้าจอโฮม”":"iPhone/iPad: เปิดหน้านี้ด้วย Safari ก่อน แล้วแตะปุ่มแชร์ ⬆️ เลือก “เพิ่มไปยังหน้าจอโฮม”";
+  return "Android: แตะเมนู ⋮ ของเบราว์เซอร์ แล้วเลือก “ติดตั้งแอป” หรือ “เพิ่มไปยังหน้าจอหลัก”"}
+function refreshIns(){
+  var snooze=Date.now()-(+lget("insX")||0)<6048e5;
+  $("insBtn").classList.toggle("hide",!dp);$("insBtn2").classList.toggle("hide",!dp);
+  if(isStd){$("ins").classList.add("hide");$("insInfo").textContent="ติดตั้งเป็นแอปแล้ว ✅ เปิดจากหน้าจอโฮมได้เลย";return}
+  $("insInfo").textContent=(dp?"กด “ติดตั้งแอปลงเครื่อง” ด้านล่าง หรือ ":"")+howTo()+" — ควรติดตั้งก่อนเริ่มจดข้อมูล เพราะแอปที่ติดตั้งบน iPhone เก็บข้อมูลแยกจาก Safari (ย้ายได้ด้วยการสำรอง/กู้คืน)";
+  if(snooze||!(dp||isIOS)){$("ins").classList.add("hide");return}
+  $("insTxt").textContent=dp?"📲 ติดตั้งแอปไว้บนหน้าจอ เปิดง่ายและใช้ออฟไลน์ได้":"📲 "+howTo();
+  $("ins").classList.remove("hide")}
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;refreshIns()});
+window.addEventListener("appinstalled",function(){dp=null;isStd=true;refreshIns()});
+function doInstall(){if(!dp)return;dp.prompt();dp.userChoice.then(function(){dp=null;refreshIns()})}
+$("insBtn").addEventListener("click",doInstall);$("insBtn2").addEventListener("click",doInstall);
+$("insX").addEventListener("click",function(){lset("insX",String(Date.now()));$("ins").classList.add("hide")});
+function showUpd(){$("upd").classList.remove("hide");$("dot").classList.remove("hide");$("verTxt").textContent="มีเวอร์ชันใหม่พร้อมอัปเดต กด “อัปเดตเลย” ที่แถบด้านบน"}
+$("updNow").addEventListener("click",function(){wantReload=true;var w=reg&&reg.waiting;if(w)w.postMessage("SKIP_WAITING");else location.reload()});
+$("updLater").addEventListener("click",function(){$("upd").classList.add("hide")});
+$("verTxt").textContent="เวอร์ชันแอป "+APP_VERSION;
+$("chkUpd").addEventListener("click",function(){var m=$("verTxt");
+  if(!reg){m.textContent="ตรวจอัปเดตได้เมื่อเปิดแอปจากเว็บไซต์ (https) ที่ติดตั้งไว้แล้วเท่านั้น";return}
+  m.textContent="กำลังตรวจสอบ…";
+  reg.update().then(function(){if(reg.waiting)showUpd();else if(reg.installing)m.textContent="กำลังดาวน์โหลดเวอร์ชันใหม่…";else m.textContent="เป็นเวอร์ชันล่าสุดแล้ว ✅ (เวอร์ชัน "+APP_VERSION+")"}).catch(function(){m.textContent="ตรวจสอบไม่สำเร็จ กรุณาต่ออินเทอร์เน็ตแล้วลองใหม่"})});
+if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)){
+  navigator.serviceWorker.register("service-worker.js").then(function(r){reg=r;
+    if(r.waiting&&navigator.serviceWorker.controller)showUpd();
+    r.addEventListener("updatefound",function(){var n=r.installing;if(!n)return;n.addEventListener("statechange",function(){if(n.state==="installed"&&navigator.serviceWorker.controller)showUpd()})});
+    document.addEventListener("visibilitychange",function(){if(!document.hidden)r.update().catch(function(){})});
+    setInterval(function(){r.update().catch(function(){})},36e5)}).catch(function(){});
+  navigator.serviceWorker.addEventListener("controllerchange",function(){if(wantReload)location.reload()})}
+refreshIns();
+
+/* ===== แพ้อาหารและยา + ฟังก์ชันพิเศษ ===== */
+var aType="food",aSev=2,SC=["","var(--green)","var(--gold)","var(--red)"],SL=["","🟢 เล็กน้อย","🟡 ปานกลาง","🔴 รุนแรง"];
+function algs(t){var id=kid().id;return S.alg.filter(function(a){return a.kid===id&&a.type===t})}
+function names(t){return algs(t).map(function(a){return a.name}).join(", ")}
+function age(b){if(!b)return"";var d=new Date(b+"T00:00:00"),n=new Date(),m=(n.getFullYear()-d.getFullYear())*12+n.getMonth()-d.getMonth()-(n.getDate()<d.getDate()?1:0);if(m<0)return"";return m>=24?Math.floor(m/12)+" ปี"+(m%12?" "+m%12+" เดือน":""):m+" เดือน"}
+function tm(t){return new Date(t).toLocaleTimeString("th-TH",{hour:"2-digit",minute:"2-digit"})+" น."}
+function chart(title,pts,unit,col){
+  if(pts.length<2)return'<p class="note">'+title+': จดอย่างน้อย 2 ครั้งจึงจะแสดงกราฟ</p>';
+  pts.sort(function(a,b){return a.x-b.x});pts=pts.slice(-12);
+  var W=320,H=140,p=28,xs=pts.map(function(q){return q.x}),ys=pts.map(function(q){return q.y}),x0=Math.min.apply(0,xs),x1=Math.max.apply(0,xs),y0=Math.min.apply(0,ys),y1=Math.max.apply(0,ys);
+  if(y0===y1){y0-=1;y1+=1}
+  var X=function(v){return p+(x1===x0?0:(v-x0)/(x1-x0))*(W-2*p)},Y=function(v){return H-p-(v-y0)/(y1-y0)*(H-2*p)};
+  var d=function(t){return new Date(t).toLocaleDateString("th-TH",{day:"numeric",month:"short"})};
+  return'<b>'+title+'</b> <span class="note">('+unit+')</span><svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="กราฟ'+title+'"><polyline fill="none" stroke="'+col+'" stroke-width="3" stroke-linejoin="round" points="'+pts.map(function(q){return X(q.x)+","+Y(q.y)}).join(" ")+'"/>'+
+    pts.map(function(q){return'<circle cx="'+X(q.x)+'" cy="'+Y(q.y)+'" r="4.5" fill="'+col+'"/><text class="ct" x="'+X(q.x)+'" y="'+(Y(q.y)-8)+'" text-anchor="middle">'+q.y+'</text>'}).join("")+
+    '<text class="ct" x="'+p+'" y="'+(H-6)+'">'+d(x0)+'</text><text class="ct" x="'+(W-p)+'" y="'+(H-6)+'" text-anchor="end">'+d(x1)+'</text></svg>'}
+function renderTimers(){var k=kid(),L=S.timers.filter(function(t){return t.kid===k.id});
+  $("timers").innerHTML=L.length?L.map(function(t){var s;
+    if(!t.last)s="ยังไม่ได้เริ่มนับ กด “เพิ่งให้ยา” เมื่อให้ยาแล้ว";
+    else{var nx=t.last+t.hrs*36e5,r=nx-Date.now();if(r>0){var m=Math.ceil(r/6e4);s="⏳ อีก "+Math.floor(m/60)+" ชม. "+m%60+" นาที (ประมาณ "+tm(nx)+")"}else s="✅ ถึงรอบแล้ว (ให้ล่าสุด "+tm(t.last)+")"}
+    return'<div class="item" style="margin-top:12px;border-left-color:var(--sky)"><b>💊 '+esc(t.name)+'</b> <span class="note">ทุก '+t.hrs+' ชม.</span><p>'+s+'</p><button class="btn" data-tg="'+t.id+'" style="margin-top:6px;padding:9px;font-size:15px" type="button">💊 เพิ่งให้ยา</button><button class="del" data-td="'+t.id+'" type="button">ลบนาฬิกานี้</button></div>'}).join(""):'<div class="empty">⏱️<br>ยังไม่มีนาฬิกายาของ'+esc(k.name)+'</div>'}
+function renderExtra(){var k=kid();
+  var dr=names("drug"),fo=names("food");
+  $("algStrip").innerHTML=(dr||fo)?'<div class="warn" style="margin-top:12px">⚠️ '+esc(k.name)+' แพ้: '+(dr?'💊 '+esc(dr):"")+(dr&&fo?" · ":"")+(fo?'🍤 '+esc(fo):"")+'</div>':"";
+  var L=S.alg.filter(function(a){return a.kid===k.id}).sort(function(a,b){return b.sev-a.sev});
+  opts("algnames",S.alg.map(function(a){return a.name}));
+  $("algList").innerHTML=L.length?L.map(function(a){return'<div class="item" style="margin-top:12px;border-left-color:'+SC[a.sev]+'"><span class="dt">'+(a.type==="drug"?"💊 แพ้ยา":"🍤 แพ้อาหาร")+'</span><b>'+esc(a.name)+'</b><p>'+SL[a.sev]+(a.react?" — "+esc(a.react):"")+'</p>'+(a.date?'<div class="note">พบเมื่อ '+fd(a.date)+'</div>':"")+(a.note?'<p class="note">'+esc(a.note)+'</p>':"")+'<button class="del" data-a="'+a.id+'" type="button">ลบรายการนี้</button></div>'}).join(""):'<div class="empty">🛡️<br>ยังไม่ได้บันทึกการแพ้ของ'+esc(k.name)+'<br><span class="note">ยังไม่มีข้อมูล ไม่ได้แปลว่าไม่แพ้</span></div>';
+  $("pb").value=k.birth||"";$("pbl").value=k.blood||"";$("pph").value=k.phone||"";
+  var tp=[],wp=[];
+  S.ill.filter(function(l){return l.kid===k.id}).forEach(function(l){var x=new Date((l.start||today())+"T00:00:00").getTime();if(l.v&&parseFloat(l.v.t))tp.push({x:x,y:parseFloat(l.v.t)});if(l.v&&parseFloat(l.v.w))wp.push({x:x,y:parseFloat(l.v.w)})});
+  S.chk.filter(function(c){return c.kid===k.id}).forEach(function(c){if(parseFloat(c.w))wp.push({x:new Date(c.date+"T00:00:00").getTime(),y:parseFloat(c.w)})});
+  $("charts").innerHTML=chart("🌡️ อุณหภูมิตอนป่วย",tp,"°C","#d23c77")+'<div style="height:14px"></div>'+chart("⚖️ น้ำหนัก",wp,"กก.","#2e9467");
+  var n=S.stars[k.id]||0,lv=n>=30?["👑","ราชาแห่งความกล้า"]:n>=15?["🦄","ยูนิคอร์นจอมพลัง"]:n>=5?["🐥","ไก่น้อยกล้าหาญ"]:["🐣","ลูกเจี๊ยบน้อย"];
+  $("starBox").innerHTML='<div style="text-align:center;font-size:46px;line-height:1.2">'+lv[0]+'</div><div style="text-align:center;font-weight:700">'+lv[1]+' — '+n+' ดวง</div><div style="text-align:center;font-size:24px;margin-top:6px;word-break:break-all">'+(n?"⭐".repeat(Math.min(n,40)):'<span class="note">กดปุ่มด้านล่างทุกครั้งที่กินยาเก่ง</span>')+'</div>';
+  renderTimers()}
+var _render=render;render=function(){_render();renderExtra()};
+document.querySelector("#fa").addEventListener("click",function(e){var b=e.target.closest(".seg");if(!b)return;var g=b.parentNode.children;Array.prototype.forEach.call(g,function(x){x.setAttribute("aria-pressed",x===b)});if(b.dataset.ty)aType=b.dataset.ty;if(b.dataset.sv)aSev=+b.dataset.sv});
+$("fa").addEventListener("submit",function(e){e.preventDefault();S.alg.push({id:"a"+Date.now(),kid:kid().id,type:aType,name:$("an").value.trim(),react:$("ar").value.trim(),sev:aSev,date:$("ad").value,note:$("ano").value.trim()});save();$("fa").reset();render()});
+$("algList").addEventListener("click",function(e){var b=e.target.closest("[data-a]");if(b)arm(b,function(){S.alg=S.alg.filter(function(a){return a.id!==b.dataset.a});save();render()})});
+$("meds").addEventListener("input",function(e){var i=e.target;if(!i.classList.contains("mn"))return;var v=i.value.trim().toLowerCase(),w=i.closest(".med").querySelector(".warn"),hit=v.length>1&&algs("drug").filter(function(a){var n=a.name.toLowerCase();return n.indexOf(v)>-1||v.indexOf(n)>-1})[0];
+  w.textContent=hit?"⚠️ "+kid().name+" แพ้ยา “"+hit.name+"” — ตรวจสอบกับแพทย์หรือเภสัชกรก่อนให้ยา":"";w.classList.toggle("hide",!hit)});
+["pb","pbl","pph"].forEach(function(id){$(id).addEventListener("change",function(){var k=kid();k.birth=$("pb").value;k.blood=$("pbl").value.trim();k.phone=$("pph").value.trim();save()})});
+$("showEm").addEventListener("click",function(){var k=kid(),dr=names("drug"),fo=names("food"),ls=S.ill.filter(function(l){return l.kid===k.id}).sort(function(a,b){return a.start<b.start?1:-1})[0],ms=ls?(ls.meds||[]).map(function(m){return esc(m.n)+(m.d?" "+esc(m.d):"")}).join(", "):"";
+  $("em").innerHTML='<button class="emx" id="emX" type="button">✕ ปิด</button><h1>🚨 ข้อมูลฉุกเฉิน</h1><div class="emn">'+esc(k.name)+'</div><div>'+[age(k.birth)&&"🎂 อายุ "+age(k.birth),k.blood&&"🩸 หมู่เลือด "+esc(k.blood)].filter(Boolean).join(" · ")+'</div>'+
+   '<div class="emb red"><b>💊 แพ้ยา</b><br>'+(dr?esc(dr):"ยังไม่ได้บันทึก")+'</div><div class="emb"><b>🍤 แพ้อาหาร</b><br>'+(fo?esc(fo):"ยังไม่ได้บันทึก")+'</div>'+
+   hnBox()+(ls?'<div class="emb"><b>🦠 ป่วยล่าสุด</b><br>'+esc(ls.disease)+' ('+fd(ls.start)+')'+(ms?'<br><b>💊 ยาที่ใช้</b> '+ms:"")+'</div>':"")+
+   (k.phone?'<a class="emcall" href="tel:'+esc(k.phone.replace(/[^0-9+]/g,""))+'">📞 โทรหาผู้ปกครอง '+esc(k.phone)+'</a>':"");
+  $("em").classList.remove("hide")});
+$("em").addEventListener("click",function(e){if(e.target.id==="emX")$("em").classList.add("hide")});
+$("sumBtn").addEventListener("click",function(){var k=kid(),dr=names("drug"),fo=names("food"),t=["สรุปสุขภาพ: "+k.name+(age(k.birth)?" อายุ "+age(k.birth):"")+(k.blood?" หมู่เลือด "+k.blood:""),"แพ้ยา: "+(dr||"ยังไม่ได้บันทึก"),"แพ้อาหาร: "+(fo||"ยังไม่ได้บันทึก"),hnTxt(),"","ประวัติการป่วยล่าสุด:"];
+  S.ill.filter(function(l){return l.kid===k.id}).sort(function(a,b){return a.start<b.start?1:-1}).slice(0,5).forEach(function(l){var v=VL.filter(function(x){return l.v&&l.v[x[0]]}).map(function(x){return x[1].replace(/^\S+ /,"")+" "+l.v[x[0]]}).join(", ");
+    t.push("- "+fd(l.start)+" "+l.disease+(l.sym?" | อาการ: "+l.sym:"")+(v?" | "+v:"")+(l.trt?" | รักษา: "+l.trt:"")+((l.meds||[]).length?" | ยา: "+l.meds.map(function(m){return m.n+(m.d?" "+m.d:"")+(m.h?" ("+m.h+")":"")}).join(", "):""))});
+  var c=S.chk.filter(function(c){return c.kid===k.id}).sort(function(a,b){return a.date<b.date?1:-1})[0];if(c)t.push("","ตรวจสุขภาพล่าสุด "+fd(c.date)+": น้ำหนัก "+(c.w||"-")+" กก. ส่วนสูง "+(c.h||"-")+" ซม.");
+  var x=t.join("\n"),a=$("sumTxt");a.value=x;a.classList.remove("hide");a.select();
+  if(navigator.share){navigator.share({title:"สรุปสุขภาพ "+k.name,text:x}).catch(function(){})}else{try{document.execCommand("copy")}catch(e){}}});
+$("addTimer").addEventListener("click",function(){var n=$("tn").value.trim(),h=parseFloat($("th").value);if(!n||!(h>0))return;S.timers.push({id:"t"+Date.now(),kid:kid().id,name:n,hrs:h,last:null});$("tn").value="";$("th").value="";save();renderTimers()});
+$("timers").addEventListener("click",function(e){var g=e.target.closest("[data-tg]"),d=e.target.closest("[data-td]");
+  if(g){S.timers.forEach(function(t){if(t.id===g.dataset.tg)t.last=Date.now()});save();renderTimers()}
+  if(d)arm(d,function(){S.timers=S.timers.filter(function(t){return t.id!==d.dataset.td});save();renderTimers()})});
+$("starBtn").addEventListener("click",function(){var id=kid().id;S.stars[id]=(S.stars[id]||0)+1;save();renderExtra()});
+setInterval(function(){if(!$("p-sp").classList.contains("hide"))renderTimers()},3e4);
+render();
+
+/* ===== ตู้เซฟ: รหัสป้องกัน + เข้ารหัส + รูปภาพ ===== */
+var enc=new TextEncoder(),dec=new TextDecoder(),KEYM=null,ACC=[],urls=[],upKind="photo",tries=0,hid0=0,shown={},HAS=!!(window.crypto&&crypto.subtle);
+function flash(m){$("vmsg").textContent=m}
+function b64(buf){var a=new Uint8Array(buf),t="";for(var i=0;i<a.length;i++)t+=String.fromCharCode(a[i]);return btoa(t)}
+function ub64(t){var b=atob(t),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
+async function derive(pin,salt){var m=await crypto.subtle.importKey("raw",enc.encode(pin),"PBKDF2",false,["deriveKey"]);return crypto.subtle.deriveKey({name:"PBKDF2",salt:salt,iterations:250000,hash:"SHA-256"},m,{name:"AES-GCM",length:256},false,["encrypt","decrypt"])}
+async function seal(key,bytes){var iv=crypto.getRandomValues(new Uint8Array(12)),ct=await crypto.subtle.encrypt({name:"AES-GCM",iv:iv},key,bytes),o=new Uint8Array(12+ct.byteLength);o.set(iv);o.set(new Uint8Array(ct),12);return o.buffer}
+async function unseal(key,buf){var a=new Uint8Array(buf);return crypto.subtle.decrypt({name:"AES-GCM",iv:a.slice(0,12)},key,a.slice(12))}
+var db=null;
+function idb(){return new Promise(function(res,rej){if(db)return res(db);if(!window.indexedDB)return rej(new Error("no idb"));var r=indexedDB.open("kidsHealthPhotos",1);r.onupgradeneeded=function(){r.result.createObjectStore("p",{keyPath:"id"})};r.onsuccess=function(){db=r.result;res(db)};r.onerror=function(){rej(r.error)}})}
+function tx(mode,fn){return idb().then(function(d){return new Promise(function(res,rej){var t=d.transaction("p",mode),q=fn(t.objectStore("p"));t.oncomplete=function(){res(q&&q.result)};t.onerror=function(){rej(t.error)}})})}
+function pAll(){return tx("readonly",function(o){return o.getAll()}).then(function(r){return r||[]})}
+function pPut(x){return tx("readwrite",function(o){return o.put(x)})}
+function pDel(id){return tx("readwrite",function(o){return o.delete(id)})}
+function purgeKid(id){pAll().then(function(a){return Promise.all(a.filter(function(p){return p.kid===id}).map(function(p){return pDel(p.id)}))}).catch(function(){})}
+async function loadVault(){ACC=[];if(S.vault){try{ACC=JSON.parse(dec.decode(await unseal(KEYM,ub64(S.vault))))}catch(e){ACC=[]}}}
+async function saveVault(){S.vault=b64(await seal(KEYM,enc.encode(JSON.stringify(ACC))));save()}
+async function setupKey(pin){var salt=crypto.getRandomValues(new Uint8Array(16)),key=await derive(pin,salt);return{key:key,sec:{salt:b64(salt),chk:b64(await seal(key,enc.encode("ok")))}}}
+function lockNow(){if(!S.sec)return;KEYM=null;ACC=[];shown={};$("em").classList.add("hide");$("pv").classList.add("hide");$("pin").value="";$("lkMsg").classList.add("hide");$("lock").classList.remove("hide");renderVt()}
+async function tryUnlock(){var pin=$("pin").value,m=$("lkMsg");if(!/^\d{4,8}$/.test(pin))return;
+  try{var key=await derive(pin,ub64(S.sec.salt));await unseal(key,ub64(S.sec.chk));KEYM=key;tries=0;await loadVault();$("lock").classList.add("hide");$("pin").value="";renderVt()}
+  catch(e){tries++;$("pin").value="";m.textContent=tries>=5?"ใส่รหัสผิดหลายครั้ง รอ 30 วินาทีแล้วลองใหม่":"รหัสไม่ถูกต้อง ("+tries+"/5)";m.classList.remove("hide");
+    if(tries>=5){$("unlockBtn").disabled=true;setTimeout(function(){tries=0;$("unlockBtn").disabled=false;m.classList.add("hide")},3e4)}}}
+$("unlockBtn").addEventListener("click",tryUnlock);$("pin").addEventListener("keydown",function(e){if(e.key==="Enter")tryUnlock()});
+$("forgot").addEventListener("click",function(){var b=$("forgot");arm(b,function(){S.sec=null;S.vault=null;KEYM=null;ACC=[];save();pAll().then(function(a){return Promise.all(a.filter(function(p){return p.kind==="id"}).map(function(p){return pDel(p.id)}))}).catch(function(){}).then(function(){$("lock").classList.add("hide");renderVt();flash("ล้างตู้เซฟแล้ว ตั้งรหัสใหม่ได้ที่แท็บตู้เซฟ")})})});
+document.addEventListener("visibilitychange",function(){if(document.hidden)hid0=Date.now();else if(S.sec&&KEYM&&Date.now()-hid0>6e4)lockNow()});
+function hnList(){var id=kid().id;return S.hn.filter(function(h){return h.kid===id})}
+function hnBox(){var L=hnList();return L.length?'<div class="emb"><b>🏥 เลข HN</b><br>'+L.map(function(h){return esc(h.hosp)+": "+esc(h.hn)}).join("<br>")+'</div>':""}
+function hnTxt(){var L=hnList();return"เลข HN: "+(L.length?L.map(function(h){return h.hosp+" "+h.hn}).join(", "):"ยังไม่ได้บันทึก")}
+function shrink(f){return new Promise(function(res,rej){var u=URL.createObjectURL(f),im=new Image();im.onload=function(){var s=Math.min(1,1400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(function(b){b?b.arrayBuffer().then(res):rej(new Error("blob"))},"image/jpeg",.8)};im.onerror=function(){rej(new Error("img"))};im.src=u})}
+async function addPhoto(f,kind){var ti=$(kind==="id"?"idt":"pht"),title=ti.value.trim()||(kind==="id"?"บัตรประชาชน":"รูปภาพ"),buf=await shrink(f);
+  if(kind==="id"){if(!KEYM)return;buf=await seal(KEYM,buf)}
+  await pPut({id:"p"+Date.now(),kid:kid().id,kind:kind,title:title,ts:Date.now(),buf:buf});ti.value="";flash("บันทึกรูปแล้ว ✅");renderPhotos()}
+function onFile(e){var f=e.target.files[0];e.target.value="";if(f)addPhoto(f,upKind).catch(function(){flash("บันทึกรูปไม่สำเร็จ (พื้นที่เก็บข้อมูลอาจเต็ม หรือเบราว์เซอร์ไม่รองรับ)")})}
+$("fcam").addEventListener("change",onFile);$("ffile").addEventListener("change",onFile);
+async function renderPhotos(){urls.forEach(function(u){URL.revokeObjectURL(u)});urls=[];var all;try{all=await pAll()}catch(e){return}
+  var k=kid();all=all.filter(function(x){return x.kid===k.id}).sort(function(a,b){return b.ts-a.ts});
+  async function card(x){var buf=x.buf;if(x.kind==="id"){if(!KEYM)return"";try{buf=await unseal(KEYM,buf)}catch(e){return""}}
+    var u=URL.createObjectURL(new Blob([buf],{type:"image/jpeg"}));urls.push(u);
+    return'<figure class="ph"><img src="'+u+'" alt="'+esc(x.title)+'" data-big="'+u+'"><figcaption>'+esc(x.title)+'<br><span class="note">'+new Date(x.ts).toLocaleDateString("th-TH",{day:"numeric",month:"short",year:"numeric"})+'</span></figcaption><button class="del" data-pd="'+x.id+'" type="button">ลบรูปนี้</button></figure>'}
+  var a=await Promise.all(all.filter(function(x){return x.kind==="id"}).map(card)),b=await Promise.all(all.filter(function(x){return x.kind!=="id"}).map(card));
+  $("idList").innerHTML=a.join("")||'<div class="empty" style="grid-column:1/3">🆔<br>ยังไม่มีรูปบัตร</div>';
+  $("phList").innerHTML=b.join("")||'<div class="empty" style="grid-column:1/3">📷<br>ยังไม่มีรูปในอัลบั้ม</div>'}
+$("p-vt").addEventListener("click",function(e){var t=e.target,u=t.closest("[data-up]"),g=t.closest("[data-big]"),d=t.closest("[data-pd]");
+  if(u){upKind=u.dataset.up;(u.dataset.cam==="1"?$("fcam"):$("ffile")).click()}
+  if(g){$("pv").innerHTML='<img src="'+g.dataset.big+'" alt="">';$("pv").classList.remove("hide")}
+  if(d)arm(d,function(){pDel(d.dataset.pd).then(renderPhotos)})});
+$("pv").addEventListener("click",function(){$("pv").classList.add("hide");$("pv").innerHTML=""});
+$("addHn").addEventListener("click",function(){var h=$("hh").value.trim(),n=$("hn").value.trim();if(!h||!n)return;S.hn.push({id:"h"+Date.now(),kid:kid().id,hosp:h,hn:n});$("hh").value="";$("hn").value="";save();renderVt()});
+$("hnList").addEventListener("click",function(e){var b=e.target.closest("[data-hd]");if(b)arm(b,function(){S.hn=S.hn.filter(function(h){return h.id!==b.dataset.hd});save();renderVt()})});
+function renderAcc(){$("accList").innerHTML=ACC.length?ACC.map(function(a){var sh=shown[a.id];return'<div class="item" style="margin-top:12px;border-left-color:var(--sky)"><b>🏥 '+esc(a.app)+'</b><p>👤 '+esc(a.user)+'<br>🔑 '+(sh?esc(a.pass):"••••••••")+'</p>'+(a.note?'<p class="note">'+esc(a.note)+'</p>':"")+'<div class="row"><button class="btn light" style="margin:0;padding:8px" data-sh="'+a.id+'" type="button">'+(sh?"🙈 ซ่อน":"👁️ แสดง")+'</button><button class="btn light" style="margin:0;padding:8px" data-cp="'+a.id+'" type="button">📋 คัดลอกรหัส</button></div><button class="del" data-ad="'+a.id+'" type="button">ลบบัญชีนี้</button></div>'}).join(""):'<div class="empty">🔑<br>ยังไม่มีบัญชีที่บันทึกไว้</div>'}
+$("fw").addEventListener("submit",function(e){e.preventDefault();ACC.push({id:"w"+Date.now(),app:$("ap").value.trim(),user:$("au").value.trim(),pass:$("aw").value,note:$("acn").value.trim()});saveVault().then(function(){$("fw").reset();renderAcc();flash("บันทึกบัญชีแล้ว ✅")})});
+$("accList").addEventListener("click",function(e){var t=e.target,sh=t.closest("[data-sh]"),cp=t.closest("[data-cp]"),ad=t.closest("[data-ad]");
+  if(sh){shown[sh.dataset.sh]=!shown[sh.dataset.sh];renderAcc()}
+  if(cp){var a=ACC.filter(function(x){return x.id===cp.dataset.cp})[0];(navigator.clipboard?navigator.clipboard.writeText(a.pass):Promise.reject()).then(function(){flash("คัดลอกรหัสผ่านแล้ว")}).catch(function(){flash("คัดลอกไม่ได้ กด “แสดง” แล้วจดเอง")})}
+  if(ad)arm(ad,function(){ACC=ACC.filter(function(x){return x.id!==ad.dataset.ad});saveVault().then(renderAcc)})});
+function renderPin(){var c=$("pinCard");
+  if(!HAS){c.innerHTML='<h2>🔒 รหัสป้องกัน</h2><p class="warn">เบราว์เซอร์นี้ไม่รองรับการเข้ารหัส กรุณาเปิดแอปผ่านเว็บไซต์ https</p>';return}
+  if(!S.sec){c.innerHTML='<h2>🔒 ตั้งรหัสป้องกันแอป</h2><p class="note">ตัวเลข 4–8 หลัก (แนะนำ 6 หลัก) ใช้ล็อกแอปและเข้ารหัสรูปบัตร กับบัญชีรหัสผ่านในตู้เซฟ ตั้งแล้วจึงจะใช้ส่วนบัตรและบัญชีได้ ถ้าลืมรหัส ข้อมูลในตู้เซฟกู้คืนไม่ได้</p><input id="pn1" type="password" inputmode="numeric" maxlength="8" placeholder="รหัสใหม่" aria-label="รหัสใหม่" autocomplete="new-password"><input id="pn2" type="password" inputmode="numeric" maxlength="8" placeholder="ยืนยันรหัสอีกครั้ง" aria-label="ยืนยันรหัส" autocomplete="new-password"><button class="btn" data-pa="set" type="button">🔒 ตั้งรหัสป้องกัน</button>';return}
+  c.innerHTML='<h2>🔒 รหัสป้องกัน: เปิดอยู่ ✅</h2><p class="note">แอปจะล็อกเองเมื่อออกจากแอปเกิน 1 นาที</p><button class="btn light" data-pa="lock" type="button">🔒 ล็อกตอนนี้</button><details style="margin-top:8px"><summary style="font-weight:600;color:var(--navy);cursor:pointer;padding:6px 0">เปลี่ยนรหัส</summary><input id="po" type="password" inputmode="numeric" maxlength="8" placeholder="รหัสเดิม" aria-label="รหัสเดิม" autocomplete="off"><input id="pn1" type="password" inputmode="numeric" maxlength="8" placeholder="รหัสใหม่" aria-label="รหัสใหม่" autocomplete="new-password"><input id="pn2" type="password" inputmode="numeric" maxlength="8" placeholder="ยืนยันรหัสใหม่" aria-label="ยืนยันรหัสใหม่" autocomplete="new-password"><button class="btn light" data-pa="chg" type="button">เปลี่ยนรหัส</button></details>'}
+$("pinCard").addEventListener("click",async function(e){var b=e.target.closest("[data-pa]");if(!b)return;var a=b.dataset.pa;
+  if(a==="lock"){lockNow();return}
+  var n1=$("pn1").value,n2=$("pn2").value;if(!/^\d{4,8}$/.test(n1)){flash("รหัสต้องเป็นตัวเลข 4–8 หลัก");return}if(n1!==n2){flash("รหัสที่ยืนยันไม่ตรงกัน");return}
+  try{
+    if(a==="set"){var r=await setupKey(n1);KEYM=r.key;S.sec=r.sec;ACC=[];await saveVault();flash("ตั้งรหัสป้องกันแล้ว ✅ จำรหัสไว้ให้ดี")}
+    else{var ok=await derive($("po").value,ub64(S.sec.salt));try{await unseal(ok,ub64(S.sec.chk))}catch(x){flash("รหัสเดิมไม่ถูกต้อง");return}
+      var all=(await pAll()).filter(function(p){return p.kind==="id"}),plain=[];for(var i=0;i<all.length;i++)plain.push(await unseal(ok,all[i].buf));
+      var r2=await setupKey(n1);KEYM=r2.key;for(var j=0;j<all.length;j++){all[j].buf=await seal(KEYM,plain[j]);await pPut(all[j])}
+      S.sec=r2.sec;await saveVault();flash("เปลี่ยนรหัสแล้ว ✅")}
+    renderVt()}catch(x){flash("ทำรายการไม่สำเร็จ ลองใหม่อีกครั้ง")}});
+function renderVt(){var k=kid();renderPin();$("secure").classList.toggle("hide",!KEYM);
+  $("hnList").innerHTML=hnList().length?hnList().map(function(h){return'<div class="item" style="margin-top:12px;border-left-color:var(--sky)"><b>🏥 '+esc(h.hosp)+'</b><p>HN <b>'+esc(h.hn)+'</b></p><button class="del" data-hd="'+h.id+'" type="button">ลบรายการนี้</button></div>'}).join(""):'<div class="empty">🏥<br>ยังไม่มีเลข HN ของ'+esc(k.name)+'</div>';
+  if(KEYM)renderAcc();renderPhotos()}
+var _r3=render;render=function(){_r3();renderVt()};
+render();if(S.sec)lockNow();
+</script>
+</body>
+</html>
