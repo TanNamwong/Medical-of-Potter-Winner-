@@ -1,5 +1,5 @@
 // สุขภาพลูก — ทุกครั้งที่ปล่อยเวอร์ชันใหม่ ให้แก้ CACHE_NAME ให้ต่างจากเดิม
-const CACHE_NAME='kids-health-v1.3.0';
+const CACHE_NAME='kids-health-v1.3.4';
 const FILES=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./apple-touch-icon.png'];
 self.addEventListener('install',e=>{e.waitUntil((async()=>{
   const c=await caches.open(CACHE_NAME);

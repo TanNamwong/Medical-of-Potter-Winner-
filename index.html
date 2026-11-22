@@ -50,7 +50,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible,summary:focus-vi
 .item ul{margin:2px 0 0;padding-left:20px}
 .del{margin-top:6px;background:none;border:0;color:var(--mu);font:14px "KHThai",sans-serif;padding:4px 0;cursor:pointer;text-decoration:underline}
 .del.sure{color:var(--red);font-weight:700}
-.empty{text-align:center;color:var(--mu);padding:26px 10px}
+.empty{text-align:center;color:var(--mu);padding:26px 14px;border:2px dashed var(--bd);border-radius:24px;background:var(--card);margin-top:14px}
 .note{font-size:13px;color:var(--mu);margin:6px 0 0}
 .hide{display:none}
 nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:3px solid var(--gold);display:flex;gap:2px;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));border-radius:24px 24px 0 0;z-index:5}
@@ -92,6 +92,27 @@ select{width:100%;font:16px "KHThai",sans-serif;padding:10px 12px;border:2px sol
 @media print{body>*{display:none!important}body>#printArea{display:block!important;color:#000;background:#fff;padding:10mm;font-size:12pt}
 #printArea h1{font-size:20pt;margin:0 0 6px}#printArea h2{font-size:13pt;margin:14px 0 4px;border-bottom:1px solid #999}
 #printArea table{width:100%;border-collapse:collapse}#printArea td,#printArea th{border:1px solid #999;padding:3px 5px;font-size:10pt;vertical-align:top;text-align:left}}
+.hub{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.hb{border:2px solid var(--bd);border-radius:24px;padding:16px 8px;background:var(--card);color:var(--tx);font:600 15px "KHThai",sans-serif;cursor:pointer;box-shadow:0 4px 0 var(--bd);text-align:center}
+.hb i{display:block;font-style:normal;font-size:46px;line-height:1.2}.hb b{display:block;margin-top:2px}.hb small{display:block;color:var(--mu);font-weight:400;font-size:13px;min-height:1.4em}
+.hb:nth-child(1){background:var(--pink-l)}.hb:nth-child(2){background:var(--mint)}.hb:nth-child(3){background:var(--sky-l)}.hb:nth-child(4){background:rgba(242,181,63,.2)}.hb:nth-child(5){background:var(--pink-l)}.hb:last-child{grid-column:1/3}
+.hb:active{transform:translateY(3px);box-shadow:none}
+.subbar{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:18px;color:var(--navy)}
+.subbar button{border:0;background:var(--navy);color:var(--on);border-radius:999px;width:44px;height:44px;font-size:22px;cursor:pointer;box-shadow:0 3px 0 var(--gold)}
+#wl{position:fixed;inset:0;z-index:45;background:linear-gradient(160deg,#ffb3cf,#c9ecd9 55%,#a8dcf7);display:flex;align-items:center;justify-content:center;padding:24px;overflow:auto}
+#wl .lk{background:var(--card);color:var(--tx);border-radius:28px;padding:24px;width:100%;max-width:360px;text-align:center;border:3px solid var(--gold)}
+#wl label{text-align:left}
+body{background-image:radial-gradient(circle at 10% 6%,rgba(255,179,207,.30),transparent 36%),radial-gradient(circle at 94% 28%,rgba(168,220,247,.32),transparent 40%),radial-gradient(circle at 14% 88%,rgba(201,236,217,.38),transparent 42%);background-attachment:fixed}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) body{background-image:none}}
+:root[data-theme="dark"] body{background-image:none}
+.hero{display:flex;align-items:center;gap:14px;margin-top:14px;padding:16px;border-radius:26px;background:linear-gradient(135deg,#ffd1e3,#d6f3e3 60%,#cfeafc);border:2px solid var(--gold);box-shadow:0 4px 0 var(--gold);color:#3a2230}
+.hav{width:68px;height:68px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:40px;box-shadow:0 3px 0 rgba(0,0,0,.08);flex:0 0 auto}
+.hn b{font-size:22px;display:block;line-height:1.2}.hn div{font-size:14px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tile{border:2px solid var(--bd);background:var(--card);color:var(--tx);border-radius:20px;padding:12px;text-align:left;font:600 15px "KHThai",sans-serif;cursor:pointer;box-shadow:0 3px 0 var(--bd)}
+.tile i{font-style:normal;font-size:26px;display:block;line-height:1.2}.tile span{display:block;font-size:12px;color:var(--mu);margin-top:2px}.tile b{display:block;font-size:15px;line-height:1.3;word-break:break-word}.tile small{display:block;color:var(--mu);font-weight:400;font-size:12px}
+.tile:nth-child(1){background:var(--pink-l)}.tile:nth-child(2){background:var(--mint)}.tile:nth-child(3){background:var(--sky-l)}.tile:nth-child(4){background:rgba(242,181,63,.2)}.tile:active{transform:translateY(3px);box-shadow:none}
+.ill0 .big{font-size:44px;letter-spacing:6px;line-height:1.2}.ill0 .big2{font-size:64px;line-height:1.2;margin:4px 0 8px}
 </style>
 </head>
 <body>
@@ -104,6 +125,7 @@ select{width:100%;font:16px "KHThai",sans-serif;padding:10px 12px;border:2px sol
 
   <!-- บันทึกการป่วย -->
   <section id="p-ill">
+    <div id="hero"></div>
     <div id="algStrip"></div>
     <button class="btn" id="openIll" type="button">➕ บันทึกการป่วยใหม่</button>
     <form class="card hide" id="fi" autocomplete="off">
@@ -140,8 +162,15 @@ select{width:100%;font:16px "KHThai",sans-serif;padding:10px 12px;border:2px sol
 
   <!-- ตรวจสุขภาพ -->
   <section id="p-chk" class="hide">
-    <div class="segs" id="segSub" role="group" aria-label="หมวด"><button class="seg" data-sub="chk" aria-pressed="true" type="button">🩺 ตรวจ</button><button class="seg" data-sub="appt" aria-pressed="false" type="button">📅 นัดหมอ</button><button class="seg" data-sub="vac" aria-pressed="false" type="button">💉 วัคซีน</button><button class="seg" data-sub="gr" aria-pressed="false" type="button">📈 เทียบเกณฑ์</button><button class="seg" data-sub="cost" aria-pressed="false" type="button">💰 ค่ารักษา</button></div>
-    <div id="sub-chk">
+    <div id="segSub" class="hub" role="group" aria-label="เมนูตรวจ/นัด">
+      <button class="hb" data-sub="chk" type="button"><i>🩺</i><b>ตรวจสุขภาพ</b><small id="hc-chk"></small></button>
+      <button class="hb" data-sub="appt" type="button"><i>📅</i><b>นัดหมอ</b><small id="hc-appt"></small></button>
+      <button class="hb" data-sub="vac" type="button"><i>💉</i><b>สมุดวัคซีน</b><small id="hc-vac"></small></button>
+      <button class="hb" data-sub="gr" type="button"><i>📈</i><b>เทียบเกณฑ์ WHO</b><small id="hc-gr"></small></button>
+      <button class="hb" data-sub="cost" type="button"><i>💰</i><b>ค่ารักษา/ประกัน</b><small id="hc-cost"></small></button>
+    </div>
+    <div id="subBar" class="subbar hide"><button id="subBack" type="button" aria-label="กลับ">←</button><b id="subT"></b></div>
+    <div id="sub-chk" class="hide">
     <form class="card" id="fc" autocomplete="off">
       <h2>🩺 ตรวจสุขภาพ — <span class="who"></span></h2>
       <label for="cdate">📅 วันที่ตรวจ</label><input id="cdate" type="date" required>
@@ -169,6 +198,7 @@ select{width:100%;font:16px "KHThai",sans-serif;padding:10px 12px;border:2px sol
         <label for="vs">วัคซีน</label><select id="vs"></select><input id="vo" class="hide" placeholder="ชื่อวัคซีน" aria-label="ชื่อวัคซีน">
         <div class="grid"><div><label for="vd">วันที่ฉีด</label><input id="vd" type="date" required></div><div><label for="vl">เลขล็อต</label><input id="vl"></div></div>
         <label for="vp">🏥 สถานที่</label><input id="vp" list="docs">
+        <label for="vc">💰 ค่าใช้จ่าย (บาท) <span>ฟรีใส่ 0 หรือเว้นว่างก็ได้</span></label><input id="vc" type="number" min="0" step="0.01" inputmode="decimal" placeholder="เช่น 1200">
         <button class="btn" type="submit">💾 บันทึกวัคซีน</button></form>
       <div id="vList"></div>
       <p class="note" style="margin-top:12px">ตารางอ้างอิง: แผนงานสร้างเสริมภูมิคุ้มกันโรค กรมควบคุมโรค กระทรวงสาธารณสุข (ฉบับปี 2565) บวกวัคซีน PCV ที่ สธ./สปสช. เริ่มให้เมื่อ 6 พ.ย. 2569 (อายุ 2, 4 และ 12 เดือน) ตารางอาจเปลี่ยนได้ โปรดยึดสมุดสีชมพูเล่มล่าสุดหรือคำแนะนำของโรงพยาบาล วัยเรียนให้ตรวจประวัติตามโรงเรียน (ป.1 เฉพาะรายที่ไม่ครบ, ป.5 หญิง HPV 2 เข็ม, ป.6 dT) วัคซีนทางเลือกอื่นเพิ่มได้ที่ “อื่นๆ”</p></div>
@@ -284,6 +314,10 @@ select{width:100%;font:16px "KHThai",sans-serif;padding:10px 12px;border:2px sol
   </section>
 </div>
 <div id="printArea" class="pa"></div>
+<div id="wl" class="hide" role="dialog" aria-modal="true" aria-label="ยินดีต้อนรับ"><div class="lk"><div style="font-size:60px;line-height:1.2">🧸</div><h2>ยินดีต้อนรับสู่สุขภาพลูก</h2>
+<p class="note">เริ่มด้วยการเพิ่มเด็กคนแรก เพิ่มคนอื่นได้ภายหลังในแท็บเพิ่มเติม ข้อมูลทั้งหมดเก็บอยู่ในเครื่องของคุณเท่านั้น</p>
+<form id="wlf" autocomplete="off"><input id="wln" required placeholder="ชื่อเด็ก (ชื่อเล่นก็ได้)" aria-label="ชื่อเด็ก"><label for="wlb">🎂 วันเกิด <span>(ถ้ามี)</span></label><input id="wlb" type="date"><label for="wls">เพศ <span>(ใช้กับกราฟเทียบเกณฑ์)</span></label><select id="wls"><option value="">ไม่ระบุ</option><option value="m">ชาย</option><option value="f">หญิง</option></select>
+<button class="btn" type="submit">เริ่มใช้งาน 🎈</button></form></div></div>
 <div id="lock" class="hide" role="dialog" aria-modal="true" aria-label="ใส่รหัสเพื่อเปิดแอป"><div class="lk"><div style="font-size:60px;line-height:1.2">🧸</div><h2>สุขภาพลูก</h2><p class="note">ใส่รหัสเพื่อเปิดแอป</p>
 <input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="รหัสป้องกัน" placeholder="••••••"><button class="btn" id="unlockBtn" type="button">🔓 เปิดแอป</button><p class="warn hide" id="lkMsg" role="alert"></p><button class="del" id="forgot" type="button">ลืมรหัส? ล้างตู้เซฟแล้วตั้งใหม่</button></div></div>
 <div id="pv" class="hide" role="dialog" aria-label="ดูรูป"></div>
@@ -301,9 +335,9 @@ function load(){try{var r=localStorage.getItem(KEY);if(r){var d=JSON.parse(r);if
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){$("msg").textContent="บันทึกลงเครื่องไม่ได้ กรุณาสำรองข้อมูลเก็บไว้"}}
 function migrate(){S.ill=S.ill||[];S.chk=S.chk||[];S.alg=S.alg||[];S.stars=S.stars||{};S.timers=S.timers||[];S.hn=S.hn||[];S.appt=S.appt||[];S.vac=S.vac||[];S.cost=S.cost||[];S.created=S.created||Date.now();
   if(S.logs){S.logs.forEach(function(l){S.ill.push({id:l.id,kid:l.kid,disease:l.why||"ไม่ระบุโรค",start:(l.when||"").slice(0,10),sym:"",v:{},trt:"",doc:l.doc||"",meds:[{n:l.name,d:l.dose,h:l.note}]})});delete S.logs}}
-S=load()||{kids:[{id:"k1",name:"พอตเตอร์"},{id:"k2",name:"วินเนอร์"}],cur:"k1"};migrate();save();
+S=load()||{kids:[],cur:null};migrate();save();
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
-function kid(){return S.kids.filter(function(k){return k.id===S.cur})[0]||S.kids[0]}
+function kid(){return S.kids.filter(function(k){return k.id===S.cur})[0]||S.kids[0]||{id:"_none",name:"เด็ก"}}
 function today(){var d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)}
 function fd(v){return v?new Date(v+"T00:00:00").toLocaleDateString("th-TH",{day:"numeric",month:"long",year:"numeric"}):"ไม่ระบุวันที่"}
 function opts(id,vals){$(id).innerHTML=vals.filter(function(v,i,a){return v&&a.indexOf(v)===i}).map(function(v){return'<option value="'+esc(v)+'">'}).join("")}
@@ -325,7 +359,7 @@ function render(){
       (l.sym?'<p><span class="k">🤧 อาการ</span><br>'+esc(l.sym)+'</p>':"")+(vs?'<p><span class="k">🌡️ สัญญาณชีพ</span><br>'+vs+'</p>':"")+
       ((l.trt||l.doc)?'<p><span class="k">🩹 วิธีการรักษา</span><br>'+esc(l.trt)+(l.doc?'<br><span class="note">'+esc(l.doc)+'</span>':"")+'</p>':"")+
       (ms?'<p><span class="k">💊 ยา</span></p><ul>'+ms+'</ul>':"")+
-      '<button class="del" data-ei="'+l.id+'" style="margin-right:14px">✏️ แก้ไข</button><button class="del" data-ci="'+l.id+'" style="margin-right:14px">📋 คัดลอก</button><button class="del" data-d="'+l.id+'">ลบรายการนี้</button></div>'}).join(""):'<div class="empty">🌈<br>ยังไม่มีบันทึกการป่วยของ'+esc(k.name)+'<br>กด “บันทึกการป่วยใหม่” เพื่อเริ่มจด</div>';
+      '<button class="del" data-ei="'+l.id+'" style="margin-right:14px">✏️ แก้ไข</button><button class="del" data-ci="'+l.id+'" style="margin-right:14px">📋 คัดลอก</button><button class="del" data-d="'+l.id+'">ลบรายการนี้</button></div>'}).join(""):'<div class="empty ill0"><div class="big">☁️🌈☁️</div><div class="big2">🧸</div><b>ยังไม่มีบันทึกการป่วยของ'+esc(k.name)+'</b><br>แปลว่าแข็งแรงดี 💪 ถ้าป่วยเมื่อไหร่ กด “บันทึกการป่วยใหม่” เพื่อเริ่มจด</div>';
   var cs=S.chk.filter(function(c){return c.kid===k.id}).sort(function(a,b){return a.date<b.date?1:-1});
   $("chkList").innerHTML=cs.length?cs.map(function(c){
     var p=[c.w&&"น้ำหนัก "+esc(c.w)+" กก.",c.h&&"ส่วนสูง "+esc(c.h)+" ซม.",c.c&&"รอบศีรษะ "+esc(c.c)+" ซม."].filter(Boolean).map(function(t){return'<span class="pill">'+t+"</span>"}).join("");
@@ -357,7 +391,7 @@ $("rs").addEventListener("click",function(){try{var d=JSON.parse($("bk").value);
 $("cdate").value=today();render();
 
 /* ===== ติดตั้งแอป + แจ้งอัปเดต ===== */
-var APP_VERSION="1.3.0",dp=null,reg=null,wantReload=false;
+var APP_VERSION="1.3.4",dp=null,reg=null,wantReload=false;
 var UA=navigator.userAgent,isIOS=/iphone|ipad|ipod/i.test(UA)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
 var isStd=(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
 var isSafari=/safari/i.test(UA)&&!/crios|fxios|edgios|opr\//i.test(UA);
@@ -581,7 +615,10 @@ $("algList").addEventListener("click",function(e){var b=e.target.closest("[data-
   $("an").value=a.name;$("ar").value=a.react||"";$("ad").value=a.date||"";$("ano").value=a.note||"";
   Array.prototype.forEach.call(document.querySelectorAll("#fa .seg"),function(x){x.setAttribute("aria-pressed",x.dataset.ty?x.dataset.ty===aType:+x.dataset.sv===aSev)});$("fa").scrollIntoView()});
 /* --- แท็บย่อย --- */
-function showSub(x){SUB=x;["chk","appt","vac","gr","cost"].forEach(function(n){$("sub-"+n).classList.toggle("hide",n!==x)});Array.prototype.forEach.call(document.querySelectorAll("#segSub .seg"),function(b){b.setAttribute("aria-pressed",b.dataset.sub===x)})}
+var SUBT={chk:"🩺 ตรวจสุขภาพ",appt:"📅 นัดหมอ",vac:"💉 สมุดวัคซีน",gr:"📈 เทียบเกณฑ์ WHO",cost:"💰 ค่ารักษา/ประกัน"};
+function showSub(x){SUB=x;["chk","appt","vac","gr","cost"].forEach(function(n){$("sub-"+n).classList.toggle("hide",n!==x)});$("segSub").classList.toggle("hide",x!=="hub");$("subBar").classList.toggle("hide",x==="hub");$("subT").textContent=SUBT[x]||"";window.scrollTo(0,0)}
+$("subBack").addEventListener("click",function(){showSub("hub")});
+document.querySelector("nav").addEventListener("click",function(e){var b=e.target.closest("[data-t]");if(b&&b.dataset.t==="chk")showSub("hub")});
 $("segSub").addEventListener("click",function(e){var b=e.target.closest("[data-sub]");if(b)showSub(b.dataset.sub)});
 /* --- นัดหมอ --- */
 $("fap").addEventListener("submit",function(e){e.preventDefault();S.appt.push({id:"ap"+Date.now(),kid:kid().id,title:$("apt").value.trim(),when:$("apw").value,place:$("app").value.trim(),alarm:+$("apr").value,note:$("apn").value.trim()});save();$("fap").reset();$("apr").value="1440";render()});
@@ -600,6 +637,7 @@ var VS=[["HB1","ตับอักเสบบี เข็ม 1 (HB1)",0,"ภ�
 ["DTP-HB-Hib3","DTP-HB-Hib เข็ม 3",6],["OPV3","โปลิโอชนิดกิน ครั้งที่ 3 (OPV3)",6],["Rota3","โรต้า ครั้งที่ 3",6,"ไม่ต้องให้ถ้าได้ Rotarix ครบ 2 ครั้งแล้ว"],
 ["MMR1","หัด-คางทูม-หัดเยอรมัน (MMR) เข็ม 1",9],["LAJE1","ไข้สมองอักเสบเจอี ครั้งที่ 1",12],["PCV3","นิวโมคอคคัส (PCV) เข็มกระตุ้น",12],
 ["DTP4","DTP เข็ม 4",18],["OPV4","โปลิโอชนิดกิน ครั้งที่ 4 (OPV4)",18],["MMR2","หัด-คางทูม-หัดเยอรมัน (MMR) เข็ม 2",18],["LAJE2","ไข้สมองอักเสบเจอี ครั้งที่ 2",30],["DTP5","DTP เข็ม 5",48],["OPV5","โปลิโอชนิดกิน ครั้งที่ 5 (OPV5)",48]];
+function vcost(r){return r.cost==null?"":r.cost>0?" · 💰 "+r.cost.toLocaleString("th-TH",{minimumFractionDigits:0,maximumFractionDigits:2})+" บาท":" · 💰 ไม่มีค่าใช้จ่าย"}
 function addM(b,m){var d=new Date(b+"T00:00:00");d.setMonth(d.getMonth()+m);return d}
 function gl(m){return m===0?"แรกเกิด":m<24?m+" เดือน":Math.floor(m/12)+" ปี"+(m%12?" "+m%12+" เดือน":"")}
 function renderVac(){var k=kid(),rec=S.vac.filter(function(v){return v.kid===k.id}),sel=$("vs"),cur=sel.value;
@@ -609,19 +647,19 @@ function renderVac(){var k=kid(),rec=S.vac.filter(function(v){return v.kid===k.i
   VS.forEach(function(v){if(v[2]!==lm){lm=v[2];h+='<div class="day">'+gl(v[2])+'</div>'}
     var r=rec.filter(function(x){return x.code===v[0]})[0],due=k.birth?addM(k.birth,v[2]):null,over=due&&!r&&due<now;
     h+='<div class="item" style="margin-bottom:8px;border-left-color:'+(r?"var(--green)":over?"var(--red)":"var(--bd)")+'"><b>'+(r?"✅ ":over?"⚠️ ":"⬜ ")+esc(v[1])+'</b>'+(v[3]?'<div class="note">'+esc(v[3])+'</div>':"")+
-    (r?'<p>ฉีดเมื่อ '+fd(r.date)+(r.place?" · "+esc(r.place):"")+(r.lot?" · ล็อต "+esc(r.lot):"")+'</p><button class="del" data-vx="'+r.id+'" type="button">ลบบันทึก</button>':
+    (r?'<p>ฉีดเมื่อ '+fd(r.date)+(r.place?" · "+esc(r.place):"")+(r.lot?" · ล็อต "+esc(r.lot):"")+vcost(r)+'</p><button class="del" data-vx="'+r.id+'" type="button">ลบบันทึก</button>':
     (due?'<p class="note">กำหนดประมาณ '+due.toLocaleDateString("th-TH",{day:"numeric",month:"short",year:"numeric"})+(over?" (เลยกำหนด)":"")+'</p>':"")+'<button class="btn light" style="padding:7px 12px;margin:4px 6px 0 0;width:auto" data-vm="'+v[0]+'" type="button">✔ บันทึกว่าฉีดแล้ว</button>'+(due&&!over?'<button class="btn light" style="padding:7px 12px;margin:4px 0 0;width:auto" data-vc="'+v[0]+'" type="button">📅 ปฏิทิน</button>':""))+'</div>'});
   var ot=rec.filter(function(x){return x.code==="other"});
-  if(ot.length)h+='<div class="day">วัคซีนอื่นๆ</div>'+ot.map(function(r){return'<div class="item" style="border-left-color:var(--green)"><b>✅ '+esc(r.name)+'</b><p>ฉีดเมื่อ '+fd(r.date)+(r.place?" · "+esc(r.place):"")+(r.lot?" · ล็อต "+esc(r.lot):"")+'</p><button class="del" data-vx="'+r.id+'" type="button">ลบบันทึก</button></div>'}).join("");
-  $("vList").innerHTML=(k.birth?"":'<div class="warn" style="margin-top:12px">ใส่วันเกิดของ'+esc(k.name)+'ในแท็บ ✨ พิเศษ เพื่อให้แอปคำนวณวันกำหนดฉีด</div>')+h}
+  if(ot.length)h+='<div class="day">วัคซีนอื่นๆ</div>'+ot.map(function(r){return'<div class="item" style="border-left-color:var(--green)"><b>✅ '+esc(r.name)+'</b><p>ฉีดเมื่อ '+fd(r.date)+(r.place?" · "+esc(r.place):"")+(r.lot?" · ล็อต "+esc(r.lot):"")+vcost(r)+'</p><button class="del" data-vx="'+r.id+'" type="button">ลบบันทึก</button></div>'}).join("");
+  var vt0=0;rec.forEach(function(r){if(r.cost>0)vt0+=r.cost});$("vList").innerHTML=(vt0?'<div class="card"><b>💰 ค่าวัคซีนรวม:</b> '+vt0.toLocaleString("th-TH",{minimumFractionDigits:0,maximumFractionDigits:2})+' บาท <span class="note">(ลงในหมวดค่ารักษาให้อัตโนมัติ)</span></div>':"")+(k.birth?"":'<div class="warn" style="margin-top:12px">ใส่วันเกิดของ'+esc(k.name)+'ในแท็บ ✨ พิเศษ เพื่อให้แอปคำนวณวันกำหนดฉีด</div>')+h}
 $("vs").addEventListener("change",function(){vSel=$("vs").value;$("vo").classList.toggle("hide",vSel!=="other")});
 $("fv").addEventListener("submit",function(e){e.preventDefault();var code=$("vs").value,v=VS.filter(function(x){return x[0]===code})[0],name=code==="other"?$("vo").value.trim():v[1];if(!name)return;
-  if(code!=="other")S.vac=S.vac.filter(function(x){return!(x.kid===kid().id&&x.code===code)});
-  S.vac.push({id:"v"+Date.now(),kid:kid().id,code:code,name:name,date:$("vd").value,place:$("vp").value.trim(),lot:$("vl").value.trim()});save();$("fv").reset();vSel="";$("vd").value=today();render()});
+  if(code!=="other"){var oldv=S.vac.filter(function(x){return x.kid===kid().id&&x.code===code}).map(function(x){return x.id});S.cost=S.cost.filter(function(c){return oldv.indexOf(c.vid)<0});S.vac=S.vac.filter(function(x){return!(x.kid===kid().id&&x.code===code)})}
+  var vid="v"+Date.now(),amt=$("vc").value===""?null:parseFloat($("vc").value);S.vac.push({id:vid,kid:kid().id,code:code,name:name,date:$("vd").value,place:$("vp").value.trim(),lot:$("vl").value.trim(),cost:amt});if(amt>0)S.cost.push({id:"co"+Date.now(),kid:kid().id,date:$("vd").value,hosp:$("vp").value.trim(),amt:amt,type:"วัคซีน",by:"จ่ายเอง",st:0,note:name,ph:false,vid:vid});save();$("fv").reset();vSel="";$("vd").value=today();render()});
 $("vList").addEventListener("click",function(e){var m=e.target.closest("[data-vm]"),c=e.target.closest("[data-vc]"),x=e.target.closest("[data-vx]");
   if(m){vSel=m.dataset.vm;$("vs").value=vSel;$("vo").classList.add("hide");$("vd").value=today();$("fv").scrollIntoView()}
   if(c){var v=VS.filter(function(q){return q[0]===c.dataset.vc})[0],k=kid();if(v&&k.birth)giveIcs({title:"ฉีดวัคซีน "+v[1]+" ("+k.name+")",start:addM(k.birth,v[2]),allDay:true,note:"ตามตารางวัคซีน กรมควบคุมโรค"})}
-  if(x)arm(x,function(){S.vac=S.vac.filter(function(q){return q.id!==x.dataset.vx});save();render()})});
+  if(x)arm(x,function(){S.vac=S.vac.filter(function(q){return q.id!==x.dataset.vx});S.cost=S.cost.filter(function(c){return c.vid!==x.dataset.vx});save();render()})});
 /* --- กราฟเทียบเกณฑ์ WHO (P3,P15,P50,P85,P97) --- */
 var AGM=[0,1,2,3,4,5,6,8,10,12,15,18,21,24,30,36,42,48,54,60];
 var REF={
@@ -672,14 +710,36 @@ $("pdfBtn").addEventListener("click",function(){var k=kid(),dr=names("drug"),fo=
   '<h2>ประวัติการแพ้</h2><p>แพ้ยา: '+(dr?esc(dr):"ยังไม่ได้บันทึก")+'<br>แพ้อาหาร: '+(fo?esc(fo):"ยังไม่ได้บันทึก")+'</p>'+
   '<h2>ประวัติการป่วย (ล่าสุด)</h2>'+(il.length?'<table><tr><th>วันที่</th><th>โรค / อาการ</th><th>สัญญาณชีพ</th><th>การรักษา</th><th>ยา</th></tr>'+il.map(function(l){return'<tr><td>'+fd(l.start)+'</td><td><b>'+esc(l.disease)+'</b><br>'+esc(l.sym)+'</td><td>'+vt(l)+'</td><td>'+esc(l.trt)+(l.doc?'<br>'+esc(l.doc):"")+'</td><td>'+(l.meds||[]).map(function(m){return esc(m.n)+(m.d?" "+esc(m.d):"")+(m.h?" ("+esc(m.h)+")":"")}).join("<br>")+'</td></tr>'}).join("")+'</table>':'<p>ไม่มีข้อมูล</p>')+
   '<h2>ตรวจสุขภาพ (ล่าสุด)</h2>'+(ck.length?'<table><tr><th>วันที่</th><th>น้ำหนัก (กก.)</th><th>ส่วนสูง (ซม.)</th><th>รอบศีรษะ (ซม.)</th><th>หมายเหตุ</th></tr>'+ck.map(function(c){return'<tr><td>'+fd(c.date)+'</td><td>'+esc(c.w)+'</td><td>'+esc(c.h)+'</td><td>'+esc(c.c)+'</td><td>'+esc(c.note)+'</td></tr>'}).join("")+'</table>':'<p>ไม่มีข้อมูล</p>')+
-  '<h2>ประวัติวัคซีน</h2>'+(vc.length?'<table><tr><th>วัคซีน</th><th>วันที่ฉีด</th><th>สถานที่</th><th>ล็อต</th></tr>'+vc.map(function(v){return'<tr><td>'+esc(v.name)+'</td><td>'+fd(v.date)+'</td><td>'+esc(v.place)+'</td><td>'+esc(v.lot)+'</td></tr>'}).join("")+'</table>':'<p>ไม่มีข้อมูล</p>')+
+  '<h2>ประวัติวัคซีน</h2>'+(vc.length?'<table><tr><th>วัคซีน</th><th>วันที่ฉีด</th><th>สถานที่</th><th>ล็อต</th><th>ค่าใช้จ่าย (บาท)</th></tr>'+vc.map(function(v){return'<tr><td>'+esc(v.name)+'</td><td>'+fd(v.date)+'</td><td>'+esc(v.place)+'</td><td>'+esc(v.lot)+'</td><td>'+(v.cost==null?"":esc(v.cost))+'</td></tr>'}).join("")+'</table>':'<p>ไม่มีข้อมูล</p>')+
   '<p style="margin-top:14px;font-size:9pt">สร้างจากแอปสุขภาพลูกเมื่อ '+fd(today())+' ข้อมูลบันทึกโดยผู้ปกครอง ไม่ใช่เอกสารทางการแพทย์</p>';
   $("printArea").innerHTML=h;setTimeout(function(){window.print()},60)});
 window.addEventListener("afterprint",function(){$("printArea").innerHTML=""});
 /* --- รวม --- */
-function renderNew(){renderAppt();renderVac();renderGr();renderCost();
+function renderHub(){var k=kid(),nw=Date.now(),yr=String(new Date().getFullYear()),f=function(n){return n.toLocaleString("th-TH",{maximumFractionDigits:0})};
+  $("hc-chk").textContent=S.chk.filter(function(c){return c.kid===k.id}).length+" ครั้ง";
+  $("hc-appt").textContent=S.appt.filter(function(a){return a.kid===k.id&&new Date(a.when).getTime()>=nw}).length+" นัดที่จะถึง";
+  var done=VS.filter(function(v){return S.vac.some(function(r){return r.kid===k.id&&r.code===v[0]})}).length;$("hc-vac").textContent="ฉีดแล้ว "+done+"/"+VS.length+" เข็ม";
+  $("hc-gr").textContent=(k.birth&&k.sex)?"กราฟน้ำหนัก/ส่วนสูง":"ใส่วันเกิด+เพศก่อน";
+  var cs=S.cost.filter(function(c){return c.kid===k.id}),tot=0,pd=0;cs.forEach(function(c){if(c.date.slice(0,4)===yr)tot+=c.amt;if(c.st===1)pd++});$("hc-cost").textContent=pd?"รอเบิก "+pd+" รายการ":"ปีนี้ "+f(tot)+" บาท"}
+function dshort(d){return d.toLocaleDateString("th-TH",{day:"numeric",month:"short"})}
+function ago(ds){var d=Math.floor((new Date(today()+"T00:00:00")-new Date(ds+"T00:00:00"))/864e5);return d<1?"วันนี้":d<31?d+" วันที่แล้ว":d<365?Math.floor(d/30)+" เดือนที่แล้ว":Math.floor(d/365)+" ปีที่แล้ว"}
+function renderHero(){var k=kid(),i=Math.max(0,S.kids.indexOf(k)),nw=new Date(),mine=function(x){return x.kid===k.id};
+  var last=S.ill.filter(mine).sort(function(a,b){return a.start<b.start?1:-1})[0],ap=S.appt.filter(function(a){return mine(a)&&new Date(a.when)>=nw}).sort(function(a,b){return a.when<b.when?-1:1})[0];
+  var vt='ใส่วันเกิดก่อน<small>แท็บ ✨ พิเศษ</small>';
+  if(k.birth){var pd=VS.filter(function(v){return!S.vac.some(function(r){return mine(r)&&r.code===v[0]})}).map(function(v){return{v:v,d:addM(k.birth,v[2])}}),up=pd.filter(function(x){return x.d>=nw}).sort(function(a,b){return a.d-b.d})[0],od=pd.filter(function(x){return x.d<nw}).length;
+    vt=up?esc(up.v[1].replace(/\s*\(.*\)$/,""))+'<small>กำหนด '+dshort(up.d)+(od?" · ยังไม่ได้บันทึก "+od+" เข็ม":"")+'</small>':(od?"ยังไม่ได้บันทึก "+od+" เข็ม<small>ตรวจที่สมุดวัคซีน</small>":"ครบตามตารางแล้ว 🎉")}
+  var wl=[];S.chk.filter(mine).forEach(function(c){if(parseFloat(c.w))wl.push({d:c.date,w:c.w})});S.ill.filter(mine).forEach(function(l){if(l.v&&parseFloat(l.v.w))wl.push({d:l.start,w:l.v.w})});wl.sort(function(a,b){return a.d<b.d?1:-1});
+  var tl=function(go,ic,lb,body){return'<button class="tile" data-go="'+go+'" type="button"><i>'+ic+'</i><span>'+lb+'</span><b>'+body+'</b></button>'},ag=age(k.birth),info=[ag&&"อายุ "+ag,k.blood&&"🩸 หมู่เลือด "+esc(k.blood)].filter(Boolean).join(" · ");
+  $("hero").innerHTML='<div class="hero"><div class="hav">'+KE[i%KE.length]+'</div><div class="hn"><b>'+esc(k.name)+'</b><div>'+(info||"สวัสดีค่ะ 👋 วันนี้ลูกเป็นอย่างไรบ้าง")+'</div></div></div><div class="tiles">'+
+   tl("ill","🤒","ป่วยล่าสุด",last?esc(last.disease)+"<small>"+ago(last.start)+"</small>":"ยังไม่เคยบันทึก<small>แข็งแรงดี 💪</small>")+
+   tl("appt","📅","นัดถัดไป",ap?dshort(new Date(ap.when))+" "+tm(new Date(ap.when).getTime())+"<small>"+esc(ap.title)+"</small>":"ไม่มีนัด<small>แตะเพื่อเพิ่มนัดหมอ</small>")+
+   tl("vac","💉","วัคซีนถัดไป",vt)+
+   tl("chk","⚖️","น้ำหนักล่าสุด",wl[0]?esc(wl[0].w)+" กก.<small>"+fd(wl[0].d)+"</small>":"ยังไม่มี<small>แตะเพื่อจดน้ำหนัก</small>")+'</div>'}
+$("hero").addEventListener("click",function(e){var b=e.target.closest("[data-go]");if(!b)return;var g=b.dataset.go;if(g==="ill"){$("illList").scrollIntoView({behavior:"smooth"});return}showTab("chk");showSub(g)});
+function renderNew(){renderHero();renderHub();renderAppt();renderVac();renderGr();renderCost();
   $("fc").querySelector('button[type="submit"]').textContent=editChk?"💾 บันทึกการแก้ไข":"💾 บันทึกการตรวจ";$("fa").querySelector('button[type="submit"]').textContent=editAlg?"💾 บันทึกการแก้ไข":"💾 บันทึกการแพ้";checkBackup();refreshInfo()}
-var _r4=render;render=function(){_r4();renderNew()};
+$("wlf").addEventListener("submit",function(e){e.preventDefault();var id="k"+Date.now();S.kids.push({id:id,name:$("wln").value.trim(),birth:$("wlb").value,sex:$("wls").value});S.cur=id;save();$("wl").classList.add("hide");$("wlf").reset();render();showTab("ill")});
+var _r4=render;render=function(){$("wl").classList.toggle("hide",S.kids.length>0);_r4();renderNew()};
 if(navigator.storage&&navigator.storage.persist&&navigator.storage.persisted)navigator.storage.persisted().then(function(p){if(!p)navigator.storage.persist().then(refreshInfo)}).catch(function(){});
 render();if(S.sec)lockNow();
 </script>
